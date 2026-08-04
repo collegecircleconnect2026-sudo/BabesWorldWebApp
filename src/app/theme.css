@@ -1,0 +1,39 @@
+/*
+ * ===========================================================================
+ * BRAND THEME — safe for non-developers to edit
+ * ===========================================================================
+ * All of the site's colours live here, in one place. Change a hex code
+ * (for example #E4572E) and every button, badge and marker using it updates.
+ *
+ * Tip: keep dark text on light backgrounds (and vice versa) so the site stays
+ * easy to read for kids and parents.
+ * ===========================================================================
+ */
+
+@theme {
+  /* ---- Page basics ---------------------------------------------------- */
+  --color-cream: #fff9f2; /* page background */
+  --color-cream-deep: #ffeede; /* soft banded background */
+  --color-ink: #241e3a; /* main text */
+  --color-ink-soft: #514a6b; /* secondary text */
+
+  /* ---- Brand colours -------------------------------------------------- */
+  --color-coral: #c9401b; /* primary buttons */
+  --color-coral-dark: #a4310f; /* primary button hover */
+  --color-berry: #5b32ab; /* secondary accents */
+  --color-sun: #ffb703; /* highlights, sparkles */
+  --color-sky: #2e7fbf; /* water / links */
+  --color-mint: #2f8f5b; /* success states */
+
+  /* ---- One colour per world (used by the map markers) ----------------- */
+  --color-world-forest: #2f8f5b;
+  --color-world-delta: #2e7fbf;
+  --color-world-pier: #6d4ae0;
+  --color-world-harbor: #0e8a94;
+  --color-world-party: #d1457c;
+  --color-world-pitfalls: #b4531f;
+  --color-world-safe: #4c5fd5;
+
+  /* ---- Rounded, friendly shapes --------------------------------------- */
+  --radius-blob: 2rem;
+}

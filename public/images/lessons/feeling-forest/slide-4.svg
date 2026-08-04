@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#e8f6ee"/>
+  
+  
+  <circle cx="230" cy="330" r="76" fill="#ffd66b" stroke="#241e3a" stroke-width="6"/>
+  <circle cx="204.66666666666666" cy="314.8" r="8.444444444444445" fill="#241e3a"/>
+  <circle cx="255.33333333333334" cy="314.8" r="8.444444444444445" fill="#241e3a"/>
+  <path d="M182 358 Q230 402 278 358" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <circle cx="570" cy="330" r="76" fill="#9fd4a5" stroke="#241e3a" stroke-width="6"/>
+  <circle cx="544.6666666666666" cy="314.8" r="8.444444444444445" fill="#241e3a"/>
+  <circle cx="595.3333333333334" cy="314.8" r="8.444444444444445" fill="#241e3a"/>
+  <path d="M522 358 Q570 402 618 358" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M320 220 h170 a24 24 0 0 1 24 24 v70 a24 24 0 0 1 -24 24 h-120 l-50 40 v-40 a24 24 0 0 1 -24 -24 v-70 a24 24 0 0 1 24 -24 z" fill="#ffffff" stroke="#241e3a" stroke-width="6"/>
+  <g fill="#514a6b">
+    <rect x="345" y="255" width="120" height="14" rx="7"/>
+    <rect x="345" y="285" width="80" height="14" rx="7"/>
+  </g>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="42" font-weight="700" fill="#241e3a">Slide 4 · Naming it helps</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

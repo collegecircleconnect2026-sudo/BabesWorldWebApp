@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#cfe7f7"/>
+  
+  <circle cx="120" cy="120" r="60" fill="#ffffff" opacity="0.5"/>
+  <path d="M0 430 Q200 300 400 420 T800 400 L800 600 L0 600 Z" fill="#9fd4a5"/>
+  <path d="M0 500 Q220 400 440 500 T800 480 L800 600 L0 600 Z" fill="#7cc2f0" opacity="0.9"/>
+  <path d="M400 560 L400 380 L230 200" stroke="#3f8fd0" stroke-width="46" fill="none" stroke-linecap="round"/>
+  <path d="M400 380 L580 200" stroke="#3f8fd0" stroke-width="46" fill="none" stroke-linecap="round"/>
+  <circle cx="230" cy="190" r="34" fill="#ffb703"/>
+  <circle cx="580" cy="190" r="34" fill="#ffb703"/>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="42" font-weight="700" fill="#241e3a">Decision Delta</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

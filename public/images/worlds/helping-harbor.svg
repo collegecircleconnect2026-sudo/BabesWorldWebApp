@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#cdeef2"/>
+  
+  <rect y="330" width="800" height="270" fill="#63bccb"/>
+  <circle cx="150" cy="140" r="56" fill="#ffd66b"/>
+  <path d="M300 330 L440 330 L370 190 Z" fill="#ffffff"/>
+  <rect x="364" y="180" width="10" height="160" rx="4" fill="#8a5a35"/>
+  <path d="M270 340 Q370 420 480 340 Z" fill="#e4572e"/>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="42" font-weight="700" fill="#241e3a">Helping Harbor</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

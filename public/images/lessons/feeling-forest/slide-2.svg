@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#e6f0fb"/>
+  
+  <circle cx="400" cy="170" r="66" fill="#ffd66b" stroke="#241e3a" stroke-width="6"/>
+  <rect x="330" y="250" width="140" height="190" rx="60" fill="#6d4ae0"/>
+  <circle cx="400" cy="300" r="26" fill="#e4572e"/>
+  <circle cx="400" cy="380" r="30" fill="#ffb703"/>
+  <circle cx="300" cy="360" r="24" fill="#2f8f5b"/>
+  <circle cx="500" cy="360" r="24" fill="#2f8f5b"/>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="42" font-weight="700" fill="#241e3a">Slide 2 · Feelings live in our bodies</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

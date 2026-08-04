@@ -1,0 +1,6 @@
+<!-- Browser tab icon. Replace with your own square SVG/PNG (keep the filename). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <circle cx="60" cy="60" r="58" fill="#ffb703"/>
+  <circle cx="60" cy="60" r="46" fill="#fff9f2"/>
+  <text x="60" y="74" text-anchor="middle" font-family="Verdana, sans-serif" font-size="40" font-weight="800" fill="#c9401b">BW</text>
+</svg>

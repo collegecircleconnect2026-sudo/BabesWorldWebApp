@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#cfe3fb"/>
+  
+  <rect y="300" width="800" height="300" fill="#7fb7e8"/>
+  <circle cx="640" cy="140" r="62" fill="#ffd66b"/>
+  <g fill="#b3763f">
+    <rect x="120" y="300" width="560" height="34" rx="10"/>
+    <rect x="180" y="334" width="24" height="120" rx="8"/>
+    <rect x="360" y="334" width="24" height="150" rx="8"/>
+    <rect x="560" y="334" width="24" height="130" rx="8"/>
+  </g>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="42" font-weight="700" fill="#241e3a">Peer Pressure Pier</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

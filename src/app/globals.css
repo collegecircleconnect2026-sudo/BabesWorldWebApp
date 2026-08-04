@@ -1,0 +1,63 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* ---------------------------------------------------------------------------
+   Base styles. Fonts are loaded in `layout.tsx` with next/font and exposed as
+   the CSS variables --font-body and --font-display.
+   --------------------------------------------------------------------------- */
+
+@theme inline {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), ui-sans-serif,
+    system-ui, sans-serif;
+}
+
+html {
+  /* Smooth-scroll navigation, with room for the sticky header. */
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+/* Respect people who ask their device for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* A clear, chunky focus ring — important for keyboard users. */
+:focus-visible {
+  outline: 3px solid var(--color-berry);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Gentle floating animation for the map markers. */
+@keyframes babes-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-bob {
+  animation: babes-bob 3.5s ease-in-out infinite;
+}
