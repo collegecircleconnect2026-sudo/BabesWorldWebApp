@@ -88,7 +88,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
       {/* ---- Header: lesson name + close button ---------------------------- */}
       <div className="flex items-start justify-between gap-4 border-b border-cream-deep px-5 py-4 sm:px-7">
         <div>
-          <h2 className="font-display text-2xl leading-tight font-bold text-ink sm:text-3xl">
+          <h2 className="font-display text-2xl leading-tight font-bold text-navy sm:text-3xl">
             {lesson.title}
           </h2>
           <p className="mt-1 text-sm text-ink-soft">{lesson.subtitle}</p>
@@ -97,7 +97,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-full bg-cream-deep px-4 py-3 text-sm font-bold text-ink transition hover:bg-sun/40"
+            className="shrink-0 rounded-full bg-cream-deep px-4 py-3 text-sm font-bold text-ink transition hover:bg-gold/30"
           >
             Close
             <span className="sr-only"> lesson</span>
@@ -126,7 +126,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
             <button
               type="button"
               onClick={restart}
-              className="min-h-14 rounded-full bg-coral px-7 py-3 text-lg font-bold text-white transition hover:bg-coral-dark"
+              className="min-h-14 rounded-full bg-crimson px-7 py-3 text-lg font-bold text-white transition hover:bg-crimson-deep"
             >
               Start over
             </button>
@@ -165,7 +165,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
             </p>
 
             {slide.prompt && (
-              <p className="mt-4 rounded-2xl bg-sun/20 px-4 py-3 text-lg font-semibold text-ink">
+              <p className="mt-4 rounded-2xl bg-gold/15 px-4 py-3 text-lg font-semibold text-ink">
                 <span className="mr-2" aria-hidden="true">
                   💬
                 </span>
@@ -179,7 +179,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
                 type="button"
                 onClick={() => toggle(slideSpeech(lesson, index))}
                 aria-pressed={speaking}
-                className="mt-5 inline-flex min-h-14 items-center gap-2 rounded-full bg-berry px-6 py-3 text-lg font-bold text-white transition hover:bg-berry/85"
+                className="mt-5 inline-flex min-h-14 items-center gap-2 rounded-full bg-navy px-6 py-3 text-lg font-bold text-white transition hover:bg-navy-deep"
               >
                 <span aria-hidden="true">{speaking ? "⏹️" : "🔊"}</span>
                 {speaking ? "Stop reading" : "Read this to me"}
@@ -220,7 +220,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
               <button
                 type="button"
                 onClick={goNext}
-                className="min-h-14 flex-1 rounded-full bg-coral px-6 py-3 text-lg font-bold text-white transition hover:bg-coral-dark"
+                className="min-h-14 flex-1 rounded-full bg-crimson px-6 py-3 text-lg font-bold text-white transition hover:bg-crimson-deep"
               >
                 {isLast ? "Finish" : "Next →"}
               </button>

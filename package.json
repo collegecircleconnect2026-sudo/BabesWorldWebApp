@@ -2,7 +2,7 @@
   "name": "babes-world-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Marketing + demo site for BABES World, an educational nonprofit for children ages 5-8.",
+  "description": "Marketing + demo site for BABES World (Beginning Awareness Basic Education Studies), an evidence-based life-skills program for young people from preschool through 12th grade.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

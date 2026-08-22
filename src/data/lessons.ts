@@ -43,7 +43,7 @@ export type Lesson = {
 const feelingForest: Lesson = {
   id: "feeling-forest",
   title: "Naming My Feelings",
-  subtitle: "Feeling Forest · ages 5–8 · about 5 minutes",
+  subtitle: "Feeling Forest · sample lesson · about 5 minutes",
   slides: [
     {
       title: "Welcome to Feeling Forest",

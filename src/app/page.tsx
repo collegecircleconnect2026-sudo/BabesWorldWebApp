@@ -1,3 +1,4 @@
+import CommunitySection from "@/components/CommunitySection";
 import EmailSignup from "@/components/EmailSignup";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -7,7 +8,7 @@ import WorldMap from "@/components/WorldMap";
 
 /**
  * The whole site is one page with smooth-scrolling sections:
- * hero → world map → sample lesson → email signup → footer.
+ * hero → world map → sample lesson → BABES community → email signup → footer.
  */
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
         <Hero />
         <WorldMap />
         <LessonSection />
+        <CommunitySection />
         <EmailSignup />
       </main>
       <Footer />
