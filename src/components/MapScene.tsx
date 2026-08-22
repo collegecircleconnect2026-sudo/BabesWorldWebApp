@@ -20,10 +20,10 @@ export default function MapScene() {
       focusable="false"
     >
       {/* Water */}
-      <rect width="1000" height="620" fill="#bfe6f5" />
+      <rect width="1000" height="620" fill="#b5ddef" />
 
       {/* Gentle waves */}
-      <g stroke="#a5d9ee" strokeWidth="4" fill="none" strokeLinecap="round">
+      <g stroke="#99cfe6" strokeWidth="4" fill="none" strokeLinecap="round">
         <path d="M40 90 q18 -12 36 0 t36 0" />
         <path d="M880 140 q18 -12 36 0 t36 0" />
         <path d="M120 560 q18 -12 36 0 t36 0" />
@@ -37,7 +37,7 @@ export default function MapScene() {
            C430 110 470 160 560 130 C660 96 720 140 780 180
            C860 230 900 320 860 400 C820 480 700 520 600 505
            C500 490 420 540 320 530 C250 522 200 500 150 470 Z"
-        fill="#f3e0bd"
+        fill="#f2ddb2"
       />
       <path
         d="M150 470 C80 430 90 300 180 250 C230 220 250 150 340 130
@@ -45,7 +45,7 @@ export default function MapScene() {
            C860 230 900 320 860 400 C820 480 700 520 600 505
            C500 490 420 540 320 530 C250 522 200 500 150 470 Z"
         fill="none"
-        stroke="#e3cb9e"
+        stroke="#dfc290"
         strokeWidth="10"
       />
 
@@ -55,7 +55,7 @@ export default function MapScene() {
            C430 158 470 200 555 175 C645 148 700 185 745 215
            C815 260 845 330 810 395 C775 460 680 490 595 477
            C505 464 430 505 340 495 C280 488 240 476 200 450 Z"
-        fill="#a8dd9a"
+        fill="#9fd694"
       />
 
       {/* Winding path between the worlds */}
@@ -71,7 +71,7 @@ export default function MapScene() {
       />
 
       {/* Little trees */}
-      <g fill="#4fa86b">
+      <g fill="#45a065">
         <circle cx="300" cy="300" r="16" />
         <circle cx="330" cy="330" r="12" />
         <circle cx="640" cy="180" r="14" />

@@ -1,17 +1,23 @@
 # BABES World — marketing + demo website
 
-A small, fast, single-page website for **BABES World**, an educational nonprofit
-helping children ages 5–8 build healthy behaviors and make positive life
-decisions.
+A small, fast, single-page website for **BABES World** — **Beginning Awareness
+Basic Education Studies** — an evidence-based program helping young people from
+preschool through 12th grade build life skills for happy, healthy, empowered,
+productive lives free of self-defeating behavior, featuring Buttons and Bows
+and all their friends. Taglines: *"An Evidence-Based Program"* and *"BABES Is
+Not Just For Babies"*. Public site: [babesworld.org](https://babesworld.org).
 
 It contains:
 
-1. **Hero** — name, tagline and an "Explore the Worlds" button
+1. **Hero** — name, full program name, mission and an "Explore the Worlds" button
 2. **Interactive world map** — seven clickable worlds; clicking one opens a pop-up
 3. **Lesson viewer** — slide-by-slide lesson with Next/Back, a progress bar and a
    read-aloud button (browser speech, nothing sent to a server)
-4. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
-5. **Footer** — nonprofit name and a logo placeholder
+4. **Building a BABES Community** — a rainbow graphic of the seven community
+   tiers (Families → Schools → Social Agencies → Faith-Based Organizations →
+   Media → Business → Government) supporting the licensing vision
+5. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
+6. **Footer** — program name, mission, taglines and section links
 
 Only **Feeling Forest** has a real lesson; the other six worlds show a friendly
 "Coming soon" pop-up.
@@ -75,8 +81,8 @@ Everything a non-developer needs is in four clearly-commented files.
 
 | I want to change…                                   | Edit this file            |
 | --------------------------------------------------- | ------------------------- |
-| Site name, tagline, button labels, headings, footer  | `src/config/site.ts`      |
-| Brand colours                                        | `src/app/theme.css`       |
+| Site name, taglines, mission, community tiers, footer | `src/config/site.ts`    |
+| Brand colours (navy, crimson, rainbow)               | `src/app/theme.css`       |
 | World names, blurbs, marker positions, which world has a lesson | `src/data/worlds.ts` |
 | Lesson slides (titles, text, questions, images)      | `src/data/lessons.ts`     |
 
@@ -85,15 +91,28 @@ quotes, commas and brackets alone.
 
 ### Swap the colours
 
-Open `src/app/theme.css` and change the hex codes:
+The brand system is **deep navy blue** (primary), **warm crimson red**
+(accent) and a **seven-colour rainbow** for the community section, on a warm
+parchment background. Open `src/app/theme.css` and change the hex codes:
 
 ```css
---color-coral: #c9401b; /* primary buttons */
---color-berry: #5b32ab; /* secondary accents */
+--color-navy: #1e2f5c; /* PRIMARY — headings, nav, read-aloud button */
+--color-crimson: #b01f30; /* ACCENT — main buttons, highlights */
+--color-rainbow-red: #c0392f; /* first arc of the community rainbow */
 --color-world-forest: #2f8f5b; /* the Feeling Forest marker */
 ```
 
-Every button, badge and marker using that colour updates automatically.
+Every button, badge, arc and marker using that colour updates automatically.
+
+### Edit the "Building a BABES Community" section
+
+The seven community tiers (Families → Schools → Social Agencies → Faith-Based
+Organizations → Media → Business → Government) live in `src/config/site.ts`
+under `communityTiers` — each has a `name`, a one-line `blurb` and an `accent`
+(one of the rainbow colour names above). The heading and intro/outro copy are
+in `sections.community` in the same file. The rainbow itself is drawn in code
+in `src/components/CommunitySection.tsx`; the arcs pick up the tiers and
+colours automatically, innermost (Families) to outermost (Government).
 
 ### Swap the images
 
@@ -205,7 +224,7 @@ DNS instructions at your domain registrar.
 src/
   app/
     layout.tsx      fonts, page title, global wrapper
-    page.tsx        the single page: hero → map → lesson → signup → footer
+    page.tsx        the single page: hero → map → lesson → community → signup → footer
     globals.css     base styles
     theme.css       ← BRAND COLOURS
     icon.svg        browser tab icon
@@ -216,11 +235,12 @@ src/
     MapScene.tsx    the drawn map background
     Modal.tsx       accessible pop-up (Escape, focus trap, focus return)
     LessonViewer.tsx slides, progress, Next/Back, read-aloud
+    CommunitySection.tsx  the "Building a BABES Community" rainbow
     ComingSoon.tsx  pop-up for worlds without a lesson
     EmailSignup.tsx Formspree form
     Footer.tsx
   config/
-    site.ts         ← ALL SITE TEXT
+    site.ts         ← ALL SITE TEXT (incl. taglines + community tiers)
   data/
     worlds.ts       ← THE SEVEN WORLDS
     lessons.ts      ← LESSON SLIDES

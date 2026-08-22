@@ -31,18 +31,19 @@ export default function ComingSoon({
         <p className="text-5xl" aria-hidden="true">
           {world.icon}
         </p>
-        <h2 className="mt-3 font-display text-2xl font-bold sm:text-3xl">
+        <h2 className="mt-3 font-display text-2xl font-bold text-navy sm:text-3xl">
           {world.name}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-lg text-ink-soft">
           {world.blurb}
         </p>
 
-        <p className="mx-auto mt-5 max-w-md rounded-2xl bg-sun/20 px-4 py-3 text-lg font-semibold">
+        <p className="mx-auto mt-5 max-w-md rounded-2xl bg-gold/15 px-4 py-3 text-lg font-semibold">
           <span className="mr-2" aria-hidden="true">
-            🚧
+            ✨
           </span>
-          Coming soon! We&apos;re still building this world.
+          Coming soon — the full lesson for this world is part of the complete
+          BABES World platform.
         </p>
 
         <div className="mt-7 flex flex-wrap justify-center gap-3">
@@ -50,7 +51,7 @@ export default function ComingSoon({
             <button
               type="button"
               onClick={onExploreAvailable}
-              className="min-h-14 rounded-full bg-coral px-7 py-3 text-lg font-bold text-white transition hover:bg-coral-dark"
+              className="min-h-14 rounded-full bg-crimson px-7 py-3 text-lg font-bold text-white transition hover:bg-crimson-deep"
             >
               Explore {availableWorldName} instead
             </button>

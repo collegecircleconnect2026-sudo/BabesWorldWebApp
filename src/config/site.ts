@@ -11,19 +11,34 @@
  */
 
 export const site = {
-  /** The nonprofit's name, shown in the header, hero and footer. */
+  /** The program's name, shown in the header, hero and footer. */
   name: "BABES World",
 
-  /** Short line under the logo in the header / browser tab description. */
-  shortTagline: "Healthy choices start early.",
+  /** What the acronym stands for — shown under the name in the hero and footer. */
+  fullName: "Beginning Awareness Basic Education Studies",
+
+  /** The two official taglines. */
+  taglines: {
+    evidenceBased: "An Evidence-Based Program",
+    notJustForBabies: "BABES Is Not Just For Babies",
+  },
+
+  /** The public web address, shown in the footer. */
+  url: "babesworld.org",
+
+  /** Short line for the browser tab description. */
+  shortTagline: "An Evidence-Based Program",
 
   /** The big sentence on the hero. */
   tagline:
-    "A playful place where children ages 5–8 learn to name their feelings, build healthy behaviors, and make positive life decisions.",
+    "Helping young people from preschool through 12th grade build the life skills for happy, healthy, empowered, productive lives — free of self-defeating behavior.",
 
   /** Smaller supporting sentence under the hero tagline. */
   heroSupportingText:
-    "Explore seven friendly worlds together — each one is a short, guided story with talk-about-it moments for grown-ups and kids.",
+    "Explore seven friendly worlds with Buttons and Bows and all their friends — each one a short, guided story with talk-about-it moments for classrooms and families.",
+
+  /** Small line above the hero heading. */
+  heroEyebrow: "An Evidence-Based Program · Trusted for more than 30 years",
 
   /** Text on the main hero button. */
   heroButtonLabel: "Explore the Worlds",
@@ -47,7 +62,7 @@ export const site = {
       navLabel: "Worlds",
       title: "Choose a world to explore",
       intro:
-        "Tap a glowing marker on the map. Feeling Forest is ready to explore — the other worlds are on the way!",
+        "Tap a glowing marker on the map. Feeling Forest is ready to explore — the other worlds open in the complete platform.",
     },
     lesson: {
       id: "lesson",
@@ -55,6 +70,15 @@ export const site = {
       title: "Inside a BABES World lesson",
       intro:
         "Every lesson is a short set of slides with big pictures, simple words, and a read-aloud button so early readers can follow along.",
+    },
+    community: {
+      id: "community",
+      navLabel: "Community",
+      title: "Building a BABES Community",
+      intro:
+        "Lasting prevention is a community effort. BABES World grows strongest when every layer of a community carries the same message — from the family table all the way to public policy.",
+      outro:
+        "Each arc of the rainbow strengthens the next. Licensing BABES World across a community aligns homes, classrooms and institutions around one consistent, evidence-based program.",
     },
     signup: {
       id: "signup",
@@ -69,11 +93,54 @@ export const site = {
     },
   },
 
+  /**
+   * The seven layers of a BABES Community, innermost first.
+   * Shown as the rainbow graphic in the "Building a BABES Community" section.
+   * Each `accent` is a rainbow color name from `src/app/theme.css`.
+   */
+  communityTiers: [
+    {
+      name: "Families",
+      blurb: "Where awareness begins — at home, from the very first years.",
+      accent: "red",
+    },
+    {
+      name: "Schools",
+      blurb: "Classrooms from preschool through 12th grade, one shared language.",
+      accent: "orange",
+    },
+    {
+      name: "Social Agencies",
+      blurb: "Counselors and community programs reinforcing the same skills.",
+      accent: "yellow",
+    },
+    {
+      name: "Faith-Based Organizations",
+      blurb: "Congregations extending the message of healthy, empowered living.",
+      accent: "green",
+    },
+    {
+      name: "Media",
+      blurb: "Local voices amplifying prevention instead of pressure.",
+      accent: "teal",
+    },
+    {
+      name: "Business",
+      blurb: "Employers and sponsors investing in the next generation.",
+      accent: "blue",
+    },
+    {
+      name: "Government",
+      blurb: "Policy and public health sustaining the program community-wide.",
+      accent: "violet",
+    },
+  ],
+
   /** Footer. */
   footer: {
     /** Small print under the footer logo. */
     blurb:
-      "BABES World is an educational nonprofit helping young children build healthy behaviors and make positive life decisions.",
+      "BABES World — Beginning Awareness Basic Education Studies — helps young people from preschool through 12th grade build life skills for happy, healthy, empowered, productive lives free of self-defeating behavior, with Buttons and Bows and all their friends.",
     /** Change this to the real year/organisation line if you like. */
     legalName: "BABES World",
     note: "Demo site — placeholder artwork and sample lesson content.",

@@ -1,30 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" width="640" height="520" role="img">
-  <rect width="640" height="520" rx="48" fill="#fff9f2"/>
-  <circle cx="120" cy="100" r="56" fill="#ffe6a8"/>
-  <path d="M40 400 Q180 300 320 396 T600 370 L600 480 L40 480 Z" fill="#a8dd9a"/>
-  <path d="M120 470 Q260 380 400 460" stroke="#fff9f2" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="2 28"/>
+  <rect width="640" height="520" rx="48" fill="#fdf9f3"/>
+  <path d="M120 60 A96 96 0 0 1 312 60" fill="none" stroke="#c0392f" stroke-width="11"/>
+  <path d="M134 60 A82 82 0 0 1 298 60" fill="none" stroke="#d97a26" stroke-width="11"/>
+  <path d="M148 60 A68 68 0 0 1 284 60" fill="none" stroke="#dfa215" stroke-width="11"/>
+  <path d="M162 60 A54 54 0 0 1 270 60" fill="none" stroke="#3d8b57" stroke-width="11"/>
+  <path d="M176 60 A40 40 0 0 1 256 60" fill="none" stroke="#2e6fae" stroke-width="11"/>
+  <rect x="100" y="58" width="232" height="10" fill="#fdf9f3"/>
+  <path d="M40 400 Q180 300 320 396 T600 370 L600 480 L40 480 Z" fill="#9fd694"/>
+  <path d="M120 470 Q260 380 400 460" stroke="#fdf9f3" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="2 28"/>
   <g>
-    <circle cx="200" cy="300" r="46" fill="#ffd66b" stroke="#241e3a" stroke-width="6"/>
-    <circle cx="186" cy="292" r="5" fill="#241e3a"/><circle cx="214" cy="292" r="5" fill="#241e3a"/>
-    <path d="M180 314 Q200 334 220 314" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <rect x="170" y="350" width="60" height="90" rx="26" fill="#c9401b"/>
+    <circle cx="200" cy="300" r="46" fill="#f6c17a" stroke="#1c2544" stroke-width="6"/>
+    <circle cx="186" cy="292" r="5" fill="#1c2544"/><circle cx="214" cy="292" r="5" fill="#1c2544"/>
+    <path d="M180 314 Q200 334 220 314" stroke="#1c2544" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="170" y="350" width="60" height="90" rx="26" fill="#b01f30"/>
   </g>
   <g>
-    <circle cx="320" cy="270" r="46" fill="#f6c9a8" stroke="#241e3a" stroke-width="6"/>
-    <circle cx="306" cy="262" r="5" fill="#241e3a"/><circle cx="334" cy="262" r="5" fill="#241e3a"/>
-    <path d="M300 284 Q320 304 340 284" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <rect x="290" y="320" width="60" height="96" rx="26" fill="#5b32ab"/>
+    <circle cx="320" cy="270" r="46" fill="#f6c9a8" stroke="#1c2544" stroke-width="6"/>
+    <circle cx="306" cy="262" r="5" fill="#1c2544"/><circle cx="334" cy="262" r="5" fill="#1c2544"/>
+    <path d="M300 284 Q320 304 340 284" stroke="#1c2544" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="290" y="320" width="60" height="96" rx="26" fill="#1e2f5c"/>
   </g>
   <g>
-    <circle cx="440" cy="300" r="46" fill="#e9b98c" stroke="#241e3a" stroke-width="6"/>
-    <circle cx="426" cy="292" r="5" fill="#241e3a"/><circle cx="454" cy="292" r="5" fill="#241e3a"/>
-    <path d="M420 314 Q440 334 460 314" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <rect x="410" y="350" width="60" height="90" rx="26" fill="#2f8f5b"/>
+    <circle cx="440" cy="300" r="46" fill="#e9b98c" stroke="#1c2544" stroke-width="6"/>
+    <circle cx="426" cy="292" r="5" fill="#1c2544"/><circle cx="454" cy="292" r="5" fill="#1c2544"/>
+    <path d="M420 314 Q440 334 460 314" stroke="#1c2544" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="410" y="350" width="60" height="90" rx="26" fill="#3d8b57"/>
   </g>
   <g transform="translate(470 90) rotate(8)">
-    <rect width="130" height="100" rx="14" fill="#ffffff" stroke="#241e3a" stroke-width="6"/>
-    <path d="M18 70 Q52 30 84 62 T116 44" stroke="#2e7fbf" stroke-width="8" fill="none" stroke-linecap="round"/>
-    <circle cx="40" cy="34" r="10" fill="#e4572e"/>
+    <rect width="130" height="100" rx="14" fill="#ffffff" stroke="#1c2544" stroke-width="6"/>
+    <path d="M18 70 Q52 30 84 62 T116 44" stroke="#2e6fae" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="40" cy="34" r="10" fill="#b01f30"/>
   </g>
-  <text x="320" y="500" text-anchor="middle" font-family="Nunito, Baloo 2, Verdana, sans-serif" font-size="20" fill="#514a6b">Placeholder illustration — swap me out</text>
+  <text x="320" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="20" fill="#4d5570">Buttons and Bows and all their friends — artwork placeholder</text>
 </svg>

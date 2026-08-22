@@ -8,14 +8,20 @@
 
 @theme inline {
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display-face), var(--font-body), ui-sans-serif,
-    system-ui, sans-serif;
+  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
 }
 
 html {
-  /* Smooth-scroll navigation, with room for the sticky header. */
+  /* Smooth-scroll navigation, with room for the sticky header
+     (which is tallest on phones, where the nav wraps under the logo). */
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 7.5rem;
+}
+
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
 }
 
 /* Respect people who ask their device for less motion. */
@@ -40,9 +46,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Selected text picks up the brand navy. */
+::selection {
+  background-color: var(--color-navy);
+  color: #ffffff;
+}
+
 /* A clear, chunky focus ring — important for keyboard users. */
 :focus-visible {
-  outline: 3px solid var(--color-berry);
+  outline: 3px solid var(--color-crimson);
   outline-offset: 3px;
   border-radius: 0.5rem;
 }

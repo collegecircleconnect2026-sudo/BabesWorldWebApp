@@ -62,9 +62,9 @@ export default function EmailSignup() {
     <section
       id={copy.id}
       aria-labelledby="signup-heading"
-      className="scroll-mt-24 bg-cream px-4 py-16 sm:py-24"
+      className="bg-cream px-4 py-16 sm:py-24"
     >
-      <div className="mx-auto max-w-xl rounded-blob bg-white p-6 shadow-lg ring-1 ring-ink/5 sm:p-10">
+      <div className="mx-auto max-w-xl rounded-blob bg-white p-6 shadow-xl ring-1 ring-navy/10 sm:p-10">
         {status === "success" ? (
           /* ---- Success state ------------------------------------------- */
           <div className="text-center" role="status">
@@ -90,7 +90,7 @@ export default function EmailSignup() {
           <>
             <h2
               id="signup-heading"
-              className="text-center font-display text-2xl font-bold sm:text-3xl"
+              className="text-center font-display text-2xl font-bold text-navy sm:text-3xl"
             >
               {copy.title}
             </h2>
@@ -113,7 +113,7 @@ export default function EmailSignup() {
                   required
                   autoComplete="name"
                   placeholder="Alex Rivera"
-                  className="mt-1 min-h-14 w-full rounded-2xl border-2 border-ink/15 bg-cream px-4 py-3 text-lg text-ink placeholder:text-ink-soft/60 focus:border-berry focus:outline-none"
+                  className="mt-1 min-h-14 w-full rounded-2xl border-2 border-ink/15 bg-cream px-4 py-3 text-lg text-ink placeholder:text-ink-soft/60 focus:border-navy focus:outline-none"
                 />
               </div>
 
@@ -131,7 +131,7 @@ export default function EmailSignup() {
                   required
                   autoComplete="email"
                   placeholder="you@example.com"
-                  className="mt-1 min-h-14 w-full rounded-2xl border-2 border-ink/15 bg-cream px-4 py-3 text-lg text-ink placeholder:text-ink-soft/60 focus:border-berry focus:outline-none"
+                  className="mt-1 min-h-14 w-full rounded-2xl border-2 border-ink/15 bg-cream px-4 py-3 text-lg text-ink placeholder:text-ink-soft/60 focus:border-navy focus:outline-none"
                 />
               </div>
 
@@ -148,19 +148,19 @@ export default function EmailSignup() {
               <button
                 type="submit"
                 disabled={status === "submitting" || !configured}
-                className="min-h-14 w-full rounded-full bg-coral px-6 py-4 text-lg font-bold text-white transition hover:bg-coral-dark disabled:cursor-not-allowed disabled:opacity-50"
+                className="min-h-14 w-full rounded-full bg-crimson px-6 py-4 text-lg font-bold text-white transition hover:bg-crimson-deep disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {status === "submitting" ? "Sending…" : copy.buttonLabel}
               </button>
 
               <p aria-live="polite" className="min-h-6 text-center">
                 {status === "error" && (
-                  <span className="font-bold text-coral">{errorMessage}</span>
+                  <span className="font-bold text-crimson">{errorMessage}</span>
                 )}
               </p>
 
               {!configured && (
-                <p className="rounded-2xl bg-sun/20 px-4 py-3 text-center text-sm font-semibold text-ink">
+                <p className="rounded-2xl bg-gold/15 px-4 py-3 text-center text-sm font-semibold text-ink">
                   Signup isn&apos;t connected yet. Add your Formspree form ID as{" "}
                   <code className="font-mono">NEXT_PUBLIC_FORMSPREE_ID</code> to
                   switch it on — see the README.

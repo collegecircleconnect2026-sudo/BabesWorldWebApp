@@ -59,22 +59,22 @@ export default function WorldMap() {
     <section
       id={site.sections.worlds.id}
       aria-labelledby="worlds-heading"
-      className="scroll-mt-24 bg-cream px-4 py-16 sm:py-24"
+      className="bg-cream px-4 py-16 sm:py-24"
     >
       <div className="mx-auto max-w-5xl">
         <h2
           id="worlds-heading"
-          className="text-center font-display text-3xl font-bold sm:text-4xl"
+          className="text-center font-display text-3xl font-bold text-navy sm:text-4xl"
         >
           {site.sections.worlds.title}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-ink-soft">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-relaxed text-ink-soft">
           {site.sections.worlds.intro}
         </p>
 
         {/* ---- The map ---------------------------------------------------- */}
         <div
-          className="relative mt-8 aspect-4/3 w-full overflow-hidden rounded-blob ring-4 ring-white sm:aspect-16/9"
+          className="relative mt-10 aspect-4/3 w-full overflow-hidden rounded-blob shadow-xl ring-1 ring-navy/15 sm:aspect-16/9"
           onKeyDown={handleMapKeyDown}
         >
           <div className="absolute inset-0">
@@ -132,10 +132,10 @@ export default function WorldMap() {
         </p>
 
         {/* ---- Same worlds as a simple list (easy tapping on phones) ------ */}
-        <h3 className="mt-12 text-center font-display text-xl font-bold sm:text-2xl">
+        <h3 className="mt-14 text-center font-display text-xl font-bold text-navy sm:text-2xl">
           All seven worlds
         </h3>
-        <ul className="mt-5 grid list-none grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-6 grid list-none grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {worlds.map((world) => {
             const hasLesson = Boolean(world.lessonId);
             const accent = accentClasses[world.accent];
@@ -145,7 +145,7 @@ export default function WorldMap() {
                 <button
                   type="button"
                   onClick={() => setActiveId(world.id)}
-                  className="flex h-full w-full cursor-pointer items-center gap-4 rounded-blob bg-white p-4 text-left shadow-sm ring-1 ring-ink/5 transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="flex h-full w-full cursor-pointer items-center gap-4 rounded-blob bg-white p-4 text-left shadow-sm ring-1 ring-navy/10 transition duration-200 hover:-translate-y-0.5 hover:shadow-md hover:ring-navy/20"
                 >
                   <span
                     className={`${accent.marker} flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl`}

@@ -3,36 +3,50 @@
  * BRAND THEME — safe for non-developers to edit
  * ===========================================================================
  * All of the site's colours live here, in one place. Change a hex code
- * (for example #E4572E) and every button, badge and marker using it updates.
+ * (for example #B01F30) and every button, badge and marker using it updates.
+ *
+ * The BABES World palette: deep navy blue (primary), warm crimson red
+ * (accent), a soft parchment background, and a seven-colour rainbow for the
+ * "Building a BABES Community" section.
  *
  * Tip: keep dark text on light backgrounds (and vice versa) so the site stays
- * easy to read for kids and parents.
+ * easy to read for kids, parents and teachers.
  * ===========================================================================
  */
 
 @theme {
   /* ---- Page basics ---------------------------------------------------- */
-  --color-cream: #fff9f2; /* page background */
-  --color-cream-deep: #ffeede; /* soft banded background */
-  --color-ink: #241e3a; /* main text */
-  --color-ink-soft: #514a6b; /* secondary text */
+  --color-cream: #fdf9f3; /* page background — warm parchment */
+  --color-cream-deep: #f6eddd; /* soft banded background */
+  --color-ink: #1c2544; /* main text — near-navy */
+  --color-ink-soft: #4d5570; /* secondary text */
 
   /* ---- Brand colours -------------------------------------------------- */
-  --color-coral: #c9401b; /* primary buttons */
-  --color-coral-dark: #a4310f; /* primary button hover */
-  --color-berry: #5b32ab; /* secondary accents */
-  --color-sun: #ffb703; /* highlights, sparkles */
-  --color-sky: #2e7fbf; /* water / links */
+  --color-navy: #1e2f5c; /* PRIMARY — deep navy blue */
+  --color-navy-deep: #14203f; /* navy hover / footer background */
+  --color-crimson: #b01f30; /* ACCENT — warm red / crimson */
+  --color-crimson-deep: #8c1624; /* crimson hover */
+  --color-gold: #e8a921; /* warm highlights, sparkles */
+  --color-sky: #2e6fae; /* water / links */
   --color-mint: #2f8f5b; /* success states */
+
+  /* ---- Rainbow (the "Building a BABES Community" graphic) ------------- */
+  --color-rainbow-red: #c0392f;
+  --color-rainbow-orange: #d97a26;
+  --color-rainbow-yellow: #dfa215;
+  --color-rainbow-green: #3d8b57;
+  --color-rainbow-teal: #2a8a8f;
+  --color-rainbow-blue: #2e6fae;
+  --color-rainbow-violet: #5b4a9e;
 
   /* ---- One colour per world (used by the map markers) ----------------- */
   --color-world-forest: #2f8f5b;
-  --color-world-delta: #2e7fbf;
-  --color-world-pier: #6d4ae0;
+  --color-world-delta: #2e6fae;
+  --color-world-pier: #5b4a9e;
   --color-world-harbor: #0e8a94;
-  --color-world-party: #d1457c;
-  --color-world-pitfalls: #b4531f;
-  --color-world-safe: #4c5fd5;
+  --color-world-party: #c74d76;
+  --color-world-pitfalls: #b05a1f;
+  --color-world-safe: #45579e;
 
   /* ---- Rounded, friendly shapes --------------------------------------- */
   --radius-blob: 2rem;

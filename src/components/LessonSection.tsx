@@ -20,23 +20,23 @@ export default function LessonSection() {
     <section
       id={site.sections.lesson.id}
       aria-labelledby="lesson-heading"
-      className="scroll-mt-24 bg-cream-deep px-4 py-16 sm:py-24"
+      className="bg-cream-deep px-4 py-16 sm:py-24"
     >
       <div className="mx-auto max-w-3xl">
         <h2
           id="lesson-heading"
-          className="text-center font-display text-3xl font-bold sm:text-4xl"
+          className="text-center font-display text-3xl font-bold text-navy sm:text-4xl"
         >
           {site.sections.lesson.title}
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-ink-soft">
+        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-relaxed text-ink-soft">
           {site.sections.lesson.intro}
         </p>
-        <p className="mt-2 text-center text-sm font-bold text-berry">
+        <p className="mt-3 text-center text-sm font-bold tracking-wide text-crimson uppercase">
           Sample lesson from {worldName}
         </p>
 
-        <div className="mt-8 overflow-hidden rounded-blob bg-white shadow-lg">
+        <div className="mt-9 overflow-hidden rounded-blob bg-white shadow-xl ring-1 ring-navy/10">
           <LessonViewer lesson={lesson} />
         </div>
       </div>

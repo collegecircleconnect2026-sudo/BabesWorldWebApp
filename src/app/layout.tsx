@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Baloo_2, Nunito } from "next/font/google";
+import { Fraunces, Nunito } from "next/font/google";
 
 import { site } from "@/config/site";
 import "./globals.css";
@@ -11,20 +11,21 @@ const bodyFont = Nunito({
   variable: "--font-body",
 });
 
-/** Headings — chunky and playful. */
-const displayFont = Baloo_2({
+/** Headings — a warm storybook serif with an established, editorial feel. */
+const displayFont = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display-face",
+  axes: ["SOFT", "opsz"],
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.shortTagline}`,
-  description: site.tagline,
+  title: `${site.name} — ${site.fullName}`,
+  description: `${site.taglines.evidenceBased}. ${site.tagline}`,
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fff9f2",
+  themeColor: "#1e2f5c",
 };
 
 export default function RootLayout({
