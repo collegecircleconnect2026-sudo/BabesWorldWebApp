@@ -9,8 +9,14 @@ Not Just For Babies"*. Public site: [babesworld.org](https://babesworld.org).
 
 It contains:
 
-1. **Hero** — name, full program name, mission and an "Explore the Worlds" button
-2. **Interactive world map** — seven clickable worlds; clicking one opens a pop-up
+1. **Hero** — name, full program name, mission and an "Explore the Map" button
+2. **Interactive BABES World map** — the real illustrated map with clickable
+   hotspots over every named place (Feeling Forest, Peer Pressure Pier, Helping
+   Harbor, Party Park, Safe City, Prevention Place, Coping Canyon, Divergent
+   Paths, Prizes Galore, Teen Institute, Smoking Cessation Clinic, Self Help
+   Groups, BABES Alive, BABES Choir, Children's Adventure, Clinicians,
+   Educators, Community/Activists, and the "Building a Community" rainbow);
+   on phones the same places appear as an easy-to-tap card grid
 3. **Lesson viewer** — slide-by-slide lesson with Next/Back, a progress bar and a
    read-aloud button (browser speech, nothing sent to a server)
 4. **Building a BABES Community** — a rainbow graphic of the seven community
@@ -19,8 +25,8 @@ It contains:
 5. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
 6. **Footer** — program name, mission, taglines and section links
 
-Only **Feeling Forest** has a real lesson; the other six worlds show a friendly
-"Coming soon" pop-up.
+Only the **Feeling Forest** has a real lesson; every other place shows a
+friendly "coming in the full platform" pop-up.
 
 **Tech:** Next.js (App Router) · TypeScript · Tailwind CSS v4. No database, no
 accounts, no payments — the whole site is static and free to host on Vercel.
@@ -82,8 +88,8 @@ Everything a non-developer needs is in four clearly-commented files.
 | I want to change…                                   | Edit this file            |
 | --------------------------------------------------- | ------------------------- |
 | Site name, taglines, mission, community tiers, footer | `src/config/site.ts`    |
-| Brand colours (navy, crimson, rainbow)               | `src/app/theme.css`       |
-| World names, blurbs, marker positions, which world has a lesson | `src/data/worlds.ts` |
+| Brand colours (navy, crimson, sky, rainbow)          | `src/app/theme.css`       |
+| Map places, blurbs, hotspot positions, which place has a lesson | `src/data/worlds.ts` |
 | Lesson slides (titles, text, questions, images)      | `src/data/lessons.ts`     |
 
 In all of these, change the text **between the quote marks** and leave the
@@ -136,8 +142,42 @@ To use your own picture:
    - a lesson slide → `image.src` in `src/data/lessons.ts`
 3. Update the `alt` text to describe the picture — screen readers read it aloud.
 
-The illustrated map background is drawn in code in `src/components/MapScene.tsx`;
-that file's comment shows how to replace it with a single image.
+### Use the real BABES World map artwork
+
+The map background works two ways, automatically:
+
+1. **With the real artwork (preferred).** Drop your scan of the hand-painted
+   map at exactly:
+
+   ```
+   public/images/babes-world-map.png
+   ```
+
+   Refresh the page (while running `npm run dev`; on Vercel, push/redeploy)
+   and the site uses it as the map background — no code change needed.
+   (A `.jpg` works too: also update `src` in the `mapArtwork`
+   block at the top of `src/data/worlds.ts`.) If your scan's proportions
+   differ a lot from ~855 × 925, update `width`/`height` in that same block
+   so the map keeps its shape while loading.
+
+2. **Without it.** Until that file exists, a built-in illustrated
+   approximation (drawn in `src/components/MapScene.tsx`) is shown, with the
+   same layout — sky border, mountain, forest ring, rainbow — so the hotspots
+   line up either way.
+
+### Adjust the hotspot positions
+
+Each place in `src/data/worlds.ts` has:
+
+```ts
+position: { x: 38.5, y: 67 },  // percent from the left, percent from the top
+```
+
+`x: 0` is the artwork's left edge, `x: 100` its right edge; `y: 0` the top,
+`y: 100` the bottom. The numbers already match the real map's layout; if your
+scan is cropped differently, open the site next to the file and nudge the
+numbers (1 = one percent of the map's width or height) until each marker sits
+on its painted label. Save, and the page refreshes with the new spot.
 
 ### Edit the lesson
 
@@ -156,25 +196,14 @@ that file's comment shows how to replace it with a single image.
 Copy a whole `{ … },` block to add a slide; delete one to remove it. The
 progress bar counts slides automatically.
 
-### Give another world a lesson
+### Give another place a lesson
 
 1. In `src/data/lessons.ts`, copy the whole `feelingForest` block, rename it, give
    it a new `id`, and add it to the `lessons` list at the bottom of the file.
-2. In `src/data/worlds.ts`, find that world and change `lessonId: null` to
+2. In `src/data/worlds.ts`, find that place and change `lessonId: null` to
    `lessonId: "your-new-id"`.
 
-That world now opens the lesson instead of "Coming soon."
-
-### Move a marker on the map
-
-In `src/data/worlds.ts`, each world has:
-
-```ts
-position: { x: 17, y: 32 },  // percent from the left, percent from the top
-```
-
-`x: 0` is the far left, `x: 100` the far right; `y: 0` is the top, `y: 100` the
-bottom.
+That place now opens the lesson instead of the "coming soon" pop-up.
 
 ---
 
@@ -231,8 +260,8 @@ src/
   components/
     Header.tsx      sticky nav with smooth-scroll links
     Hero.tsx
-    WorldMap.tsx    the interactive map + pop-up handling
-    MapScene.tsx    the drawn map background
+    WorldMap.tsx    the interactive map + hotspots + pop-up handling
+    MapScene.tsx    the drawn fallback map background
     Modal.tsx       accessible pop-up (Escape, focus trap, focus return)
     LessonViewer.tsx slides, progress, Next/Back, read-aloud
     CommunitySection.tsx  the "Building a BABES Community" rainbow
@@ -242,7 +271,7 @@ src/
   config/
     site.ts         ← ALL SITE TEXT (incl. taglines + community tiers)
   data/
-    worlds.ts       ← THE SEVEN WORLDS
+    worlds.ts       ← MAP PLACES + HOTSPOT POSITIONS
     lessons.ts      ← LESSON SLIDES
   hooks/
     useSpeech.ts    read-aloud helper

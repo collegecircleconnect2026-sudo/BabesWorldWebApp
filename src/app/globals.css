@@ -59,17 +59,3 @@ body {
   border-radius: 0.5rem;
 }
 
-/* Gentle floating animation for the map markers. */
-@keyframes babes-bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.animate-bob {
-  animation: babes-bob 3.5s ease-in-out infinite;
-}

@@ -19,18 +19,30 @@ export default function ComingSoon({
 }: ComingSoonProps) {
   return (
     <div>
-      <img
-        src={world.image.src}
-        alt={world.image.alt}
-        className="h-44 w-full rounded-t-blob bg-cream-deep object-cover sm:h-52"
-        width={800}
-        height={400}
-      />
+      {world.image ? (
+        <img
+          src={world.image.src}
+          alt={world.image.alt}
+          className="h-44 w-full rounded-t-blob bg-cream-deep object-cover sm:h-52"
+          width={800}
+          height={400}
+        />
+      ) : (
+        // Places without bespoke artwork get a sky-coloured banner instead.
+        <div
+          aria-hidden="true"
+          className="flex h-40 w-full items-center justify-center rounded-t-blob bg-linear-to-b from-sky-soft to-cream-deep sm:h-44"
+        >
+          <span className="text-7xl drop-shadow-sm">{world.icon}</span>
+        </div>
+      )}
 
       <div className="px-5 py-6 text-center sm:px-8 sm:py-8">
-        <p className="text-5xl" aria-hidden="true">
-          {world.icon}
-        </p>
+        {world.image && (
+          <p className="text-5xl" aria-hidden="true">
+            {world.icon}
+          </p>
+        )}
         <h2 className="mt-3 font-display text-2xl font-bold text-navy sm:text-3xl">
           {world.name}
         </h2>
@@ -42,7 +54,7 @@ export default function ComingSoon({
           <span className="mr-2" aria-hidden="true">
             ✨
           </span>
-          Coming soon — the full lesson for this world is part of the complete
+          Coming soon — the full lesson for this stop is part of the complete
           BABES World platform.
         </p>
 

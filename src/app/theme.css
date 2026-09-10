@@ -28,6 +28,8 @@
   --color-crimson-deep: #8c1624; /* crimson hover */
   --color-gold: #e8a921; /* warm highlights, sparkles */
   --color-sky: #2e6fae; /* water / links */
+  --color-sky-light: #e4f3fb; /* pale sky — drawn from the map's cloud border */
+  --color-sky-soft: #bfe3f4; /* soft sky — section washes */
   --color-mint: #2f8f5b; /* success states */
 
   /* ---- Rainbow (the "Building a BABES Community" graphic) ------------- */
@@ -39,14 +41,15 @@
   --color-rainbow-blue: #2e6fae;
   --color-rainbow-violet: #5b4a9e;
 
-  /* ---- One colour per world (used by the map markers) ----------------- */
+  /* ---- Marker colours (used by the map hotspots & cards) --------------- */
+  /* Drawn from the map artwork: greens, sky blues, pinks, canyon orange. */
   --color-world-forest: #2f8f5b;
-  --color-world-delta: #2e6fae;
-  --color-world-pier: #5b4a9e;
+  --color-world-sky: #2e6fae;
   --color-world-harbor: #0e8a94;
-  --color-world-party: #c74d76;
-  --color-world-pitfalls: #b05a1f;
-  --color-world-safe: #45579e;
+  --color-world-sunshine: #c8891a;
+  --color-world-rose: #c74d76;
+  --color-world-canyon: #b05a1f;
+  --color-world-grape: #5b4a9e;
 
   /* ---- Rounded, friendly shapes --------------------------------------- */
   --radius-blob: 2rem;
