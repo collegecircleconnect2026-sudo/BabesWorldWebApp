@@ -199,16 +199,8 @@ export default function MapScene() {
         <path d="M572 580 C520 728 428 814 313 866" stroke="#5b4a9e" strokeWidth="13" />
       </g>
 
-      {/* Drug Free Community goal: golden circle ringed by little houses */}
+      {/* Drug Free Community goal */}
       <circle cx="222" cy="790" r="30" fill="#e8a921" stroke="#c8891a" strokeWidth="6" />
-      <g fill="#fdf9f3" stroke="#9c8b6d" strokeWidth="3">
-        <rect x="160" y="740" width="26" height="22" rx="3" />
-        <rect x="252" y="732" width="26" height="22" rx="3" />
-        <rect x="140" y="792" width="26" height="22" rx="3" />
-        <rect x="272" y="796" width="26" height="22" rx="3" />
-        <rect x="176" y="838" width="26" height="22" rx="3" />
-        <rect x="246" y="842" width="26" height="22" rx="3" />
-      </g>
 
       {/* A few loose trees */}
       <g fill="#45a065">
