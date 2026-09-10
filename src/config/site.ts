@@ -35,13 +35,13 @@ export const site = {
 
   /** Smaller supporting sentence under the hero tagline. */
   heroSupportingText:
-    "Explore seven friendly worlds with Buttons and Bows and all their friends — each one a short, guided story with talk-about-it moments for classrooms and families.",
+    "Travel the BABES World map with Buttons and Bows and all their friends — from the Feeling Forest and Helping Harbor to Safe City — each stop a short, guided story with talk-about-it moments for classrooms and families.",
 
   /** Small line above the hero heading. */
   heroEyebrow: "An Evidence-Based Program · Trusted for more than 30 years",
 
   /** Text on the main hero button. */
-  heroButtonLabel: "Explore the Worlds",
+  heroButtonLabel: "Explore the Map",
 
   /** Secondary hero button (scrolls to the sample lesson). */
   heroSecondaryButtonLabel: "See a sample lesson",
@@ -59,10 +59,10 @@ export const site = {
   sections: {
     worlds: {
       id: "worlds",
-      navLabel: "Worlds",
-      title: "Choose a world to explore",
+      navLabel: "The Map",
+      title: "Explore the BABES World map",
       intro:
-        "Tap a glowing marker on the map. Feeling Forest is ready to explore — the other worlds open in the complete platform.",
+        "Every place on the map is a stop on the journey — from Coping Canyon to the rainbow that builds a drug-free community. The Feeling Forest is open to explore today; every other stop opens in the complete platform.",
     },
     lesson: {
       id: "lesson",
@@ -115,7 +115,7 @@ export const site = {
       accent: "yellow",
     },
     {
-      name: "Faith-Based Organizations",
+      name: "Churches",
       blurb: "Congregations extending the message of healthy, empowered living.",
       accent: "green",
     },

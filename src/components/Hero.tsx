@@ -6,13 +6,13 @@ export default function Hero() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden bg-cream-deep px-4 pt-16 pb-20 sm:pt-24 sm:pb-28"
+      className="relative overflow-hidden bg-linear-to-b from-sky-light via-cream-deep to-cream-deep px-4 pt-16 pb-20 sm:pt-24 sm:pb-28"
     >
-      {/* Decorative blobs — hidden from screen readers. */}
+      {/* Decorative cloud-like blobs — hidden from screen readers. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-16 -left-10 h-52 w-52 rounded-full bg-gold/20" />
-        <div className="absolute top-24 -right-12 h-64 w-64 rounded-full bg-navy/10" />
-        <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-crimson/10" />
+        <div className="absolute -top-16 -left-10 h-52 w-52 rounded-full bg-white/50" />
+        <div className="absolute top-24 -right-12 h-64 w-64 rounded-full bg-sky-soft/40" />
+        <div className="absolute bottom-0 left-1/3 h-40 w-40 rounded-full bg-gold/15" />
       </div>
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
