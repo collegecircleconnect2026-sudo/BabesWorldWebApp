@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
+import CharactersSection from "@/components/CharactersSection";
 import CommunitySection from "@/components/CommunitySection";
 import EmailSignup from "@/components/EmailSignup";
 import Footer from "@/components/Footer";
@@ -12,7 +13,7 @@ import { mapArtwork } from "@/data/mapButtons";
 
 /**
  * The whole site is one page with smooth-scrolling sections:
- * hero → world map → sample lesson → BABES community → email signup → footer.
+ * hero → world map → sample lesson → meet the characters → BABES community → email signup → footer.
  */
 export default function HomePage() {
   // Checked at build time: the map shows the real artwork from `public/`;
@@ -27,6 +28,7 @@ export default function HomePage() {
         <Hero />
         <WorldMap hasMapArtwork={hasMapArtwork} />
         <LessonSection />
+        <CharactersSection />
         <CommunitySection />
         <EmailSignup />
       </main>
