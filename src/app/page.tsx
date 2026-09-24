@@ -8,16 +8,16 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import LessonSection from "@/components/LessonSection";
 import WorldMap from "@/components/WorldMap";
-import { mapArtwork } from "@/data/worlds";
+import { mapArtwork } from "@/data/mapButtons";
 
 /**
  * The whole site is one page with smooth-scrolling sections:
  * hero → world map → sample lesson → BABES community → email signup → footer.
  */
 export default function HomePage() {
-  // Checked at build time: when the real map scan exists in `public/`, the
-  // map uses it; otherwise the built-in illustrated map is drawn instead.
-  // (See `mapArtwork` in `src/data/worlds.ts` and the README.)
+  // Checked at build time: the map shows the real artwork from `public/`;
+  // if that file is ever missing, a built-in drawing is shown instead.
+  // (See `mapArtwork` in `src/data/mapButtons.ts` and the README.)
   const hasMapArtwork = existsSync(join(process.cwd(), "public", mapArtwork.src));
 
   return (

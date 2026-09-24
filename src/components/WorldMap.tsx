@@ -8,20 +8,22 @@ import MapScene from "@/components/MapScene";
 import Modal from "@/components/Modal";
 import { site } from "@/config/site";
 import { getLesson } from "@/data/lessons";
-import { accentClasses, getWorld, mapArtwork, worlds } from "@/data/worlds";
+import { mapArtwork, mapButtons } from "@/data/mapButtons";
+import { accentClasses, getWorld, worlds } from "@/data/worlds";
 
 /**
  * The interactive BABES World map.
  *
- * - The background is the real scanned artwork (`mapArtwork` in
- *   `src/data/worlds.ts`) when that file exists; otherwise the built-in
- *   illustrated `MapScene` is drawn instead. Both share the same
- *   proportions, so hotspots land in the same places on either one.
- * - Hotspot markers sit on top at the positions set in `src/data/worlds.ts`.
- * - Every marker is a real <button>, so Tab and Enter work out of the box;
- *   the arrow keys also hop between markers.
- * - On phones the map is shown as a picture and the card grid underneath is
- *   the way in — the same places, easy to tap.
+ * - The centrepiece is the real hand-painted artwork (`mapArtwork` in
+ *   `src/data/mapButtons.ts`), always shown whole — never stretched or
+ *   cropped — and sized so the full map fits on screen.
+ * - A round button sits on each clickable place, at the percent positions
+ *   set in `src/data/mapButtons.ts`, so it stays on its spot at any size.
+ *   Feeling Forest (the sample lesson) gets a bigger, highlighted button.
+ * - Every button is a real <button>, so Tab and Enter work out of the box;
+ *   the arrow keys also hop between buttons.
+ * - The same places are listed as big buttons under the map — easy to tap on
+ *   phones, and a plain list for anyone who prefers one.
  * - Clicking a place opens a pop-up: the lesson if it has one, otherwise a
  *   friendly "coming in the full platform" message.
  */
@@ -29,6 +31,33 @@ type WorldMapProps = {
   /** True when `public/images/babes-world-map.png` exists (checked at build). */
   hasMapArtwork: boolean;
 };
+
+/** Each map button joined with its place's details (icon, lesson, pop-up). */
+const places = mapButtons.flatMap((button) => {
+  const world = getWorld(button.id);
+  return world ? [{ ...button, world }] : [];
+});
+
+/**
+ * The map is as wide as the page allows, but never so tall that it can't be
+ * seen in one go below the sticky header.
+ */
+const mapWidth = `min(100%, 64rem, max(20rem, calc((100svh - 7rem) * ${
+  mapArtwork.width / mapArtwork.height
+})))`;
+
+/*
+ * Button styles. Sizes use `cqw` (percent of the map's width), so buttons
+ * grow and shrink with the map, between a sensible minimum and maximum.
+ * The chunky focus ring comes from `globals.css`; the white halo added here
+ * keeps it visible over the busy artwork.
+ */
+const markerBase =
+  "group relative flex -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full leading-none transition duration-200 before:absolute before:-inset-1.5 before:rounded-full hover:scale-115 focus-visible:scale-115 focus-visible:rounded-full! focus-visible:shadow-[0_0_0_9px_#fff]";
+const markerRegular =
+  "size-[clamp(1.125rem,3.4cqw,2.25rem)] bg-white text-[clamp(0.625rem,1.75cqw,1.1875rem)] shadow-[0_2px_6px_rgb(20_32_63/0.45)] ring-2 ring-navy hover:ring-crimson";
+const markerFeatured =
+  "size-[clamp(1.625rem,5cqw,3.25rem)] bg-crimson text-[clamp(0.875rem,2.6cqw,1.75rem)] shadow-[0_3px_10px_rgb(20_32_63/0.55)] ring-[3px] ring-white hover:bg-crimson-deep";
 
 export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -86,80 +115,82 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
 
         {/* ---- The map ---------------------------------------------------- */}
         <div
-          className="relative mx-auto mt-10 max-w-3xl"
+          className="@container relative mx-auto mt-10"
+          style={{ width: mapWidth }}
           onKeyDown={handleMapKeyDown}
         >
-          <div className="overflow-hidden rounded-blob shadow-2xl ring-1 ring-navy/15">
+          <div className="overflow-hidden rounded-2xl shadow-2xl ring-1 ring-navy/15 sm:rounded-blob">
             {artworkMissing ? (
               <MapScene />
             ) : (
-              // The real scan. If the file isn't in `public/images/` yet,
-              // onError swaps in the built-in illustration above.
+              // The real artwork. If the file is ever missing from
+              // `public/images/`, onError swaps in the built-in drawing.
               <img
                 src={mapArtwork.src}
                 alt={mapArtwork.alt}
                 width={mapArtwork.width}
                 height={mapArtwork.height}
-                className="h-auto w-full"
+                className="block h-auto w-full"
                 onError={() => setArtworkMissing(true)}
               />
             )}
           </div>
 
-          {/* Hotspots — hidden on phones, where the card grid below is used. */}
-          <ul className="absolute inset-0 hidden list-none sm:block">
-            {worlds.map((world, i) => {
-              const accent = accentClasses[world.accent];
-              const hasLesson = Boolean(world.lessonId);
+          {/* Buttons on the places — positions from src/data/mapButtons.ts. */}
+          <ul
+            aria-label="Places on the map"
+            className="absolute inset-0 list-none"
+          >
+            {places.map((place, i) => {
+              const hasLesson = Boolean(place.world.lessonId);
 
               return (
                 <li
-                  key={world.id}
-                  className="absolute"
-                  style={{
-                    left: `${world.position.x}%`,
-                    top: `${world.position.y}%`,
-                  }}
+                  key={place.id}
+                  className={`absolute hover:z-20 focus-within:z-20 ${
+                    hasLesson ? "z-10" : ""
+                  }`}
+                  style={{ left: `${place.x}%`, top: `${place.y}%` }}
                 >
                   <button
                     type="button"
                     ref={(node) => {
                       markerRefs.current[i] = node;
                     }}
-                    onClick={() => setActiveId(world.id)}
-                    aria-label={`${world.name} — ${statusLabel(hasLesson)}. ${world.blurb}`}
-                    className="group flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-0.5"
+                    onClick={() => setActiveId(place.id)}
+                    aria-label={`${place.label} — ${statusLabel(hasLesson)}`}
+                    className={`${markerBase} ${
+                      hasLesson ? markerFeatured : markerRegular
+                    }`}
                   >
-                    <span className="relative flex items-center justify-center">
-                      {/* A soft pulse draws the eye to the live lesson. */}
-                      {hasLesson && (
-                        <span
-                          aria-hidden="true"
-                          className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/80 [animation-duration:2.6s]"
-                        />
-                      )}
+                    {/* A soft pulse draws the eye to the live lesson. */}
+                    {hasLesson && (
                       <span
-                        className={`${accent.marker} relative flex items-center justify-center rounded-full shadow-md ring-[3px] ring-white transition-transform duration-200 group-hover:scale-125 group-focus-visible:scale-125 ${
-                          hasLesson
-                            ? "h-9 w-9 text-lg md:h-11 md:w-11 md:text-xl"
-                            : "h-6 w-6 text-[11px] md:h-8 md:w-8 md:text-sm"
-                        }`}
                         aria-hidden="true"
-                      >
-                        {world.icon}
-                      </span>
+                        className="absolute inset-0 animate-ping rounded-full bg-gold/70 [animation-duration:2.4s] motion-reduce:hidden"
+                      />
+                    )}
+                    <span aria-hidden="true" className="relative">
+                      {place.world.icon}
                     </span>
+
+                    {/* Always-on "Start here" tag for the sample lesson. */}
+                    {hasLesson && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute top-1/2 right-full mr-[0.55em] -translate-y-1/2 rounded-full bg-navy px-[0.8em] py-[0.4em] text-[clamp(0.625rem,1.45cqw,0.9375rem)] font-bold whitespace-nowrap text-white shadow-md ring-2 ring-white"
+                      >
+                        Start here
+                        <span className="ml-[0.35em] text-gold">→</span>
+                      </span>
+                    )}
+
+                    {/* Name tag, shown on hover and keyboard focus. */}
                     <span
-                      className={`rounded-full bg-white/95 px-1.5 py-px text-[9px] leading-tight font-bold whitespace-nowrap text-ink shadow-sm transition-colors duration-200 group-hover:bg-navy group-hover:text-white md:px-2 md:text-[11px] ${
-                        hasLesson ? "ring-1 ring-gold" : ""
-                      }`}
+                      aria-hidden="true"
+                      className="pointer-events-none absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 rounded-full bg-navy px-2.5 py-1 text-xs font-bold whitespace-nowrap text-white shadow-md group-hover:block group-focus-visible:block sm:text-sm"
                     >
-                      {world.name}
-                      {hasLesson && (
-                        <span className="ml-1 text-gold" aria-hidden="true">
-                          ✨
-                        </span>
-                      )}
+                      {place.label}
                     </span>
                   </button>
                 </li>
@@ -174,34 +205,34 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
           to open one.
         </p>
         <p className="mt-4 text-center text-sm text-ink-soft sm:hidden">
-          Browse every place on the map below.
+          Tap a button on the map, or pick a place from the list below.
         </p>
 
-        {/* ---- Same places as tappable cards (the way in on phones) ------- */}
+        {/* ---- Same places as a list of big buttons (easy to tap) -------- */}
         <h3 className="mt-14 text-center font-display text-xl font-bold text-navy sm:text-2xl">
           Every stop in BABES World
         </h3>
         <ul className="mt-6 grid list-none grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {worlds.map((world) => {
-            const hasLesson = Boolean(world.lessonId);
-            const accent = accentClasses[world.accent];
+          {places.map((place) => {
+            const hasLesson = Boolean(place.world.lessonId);
+            const accent = accentClasses[place.world.accent];
 
             return (
-              <li key={world.id}>
+              <li key={place.id}>
                 <button
                   type="button"
-                  onClick={() => setActiveId(world.id)}
+                  onClick={() => setActiveId(place.id)}
                   className="flex h-full w-full cursor-pointer items-center gap-4 rounded-blob bg-white p-4 text-left shadow-sm ring-1 ring-navy/10 transition duration-200 hover:-translate-y-0.5 hover:shadow-md hover:ring-navy/25"
                 >
                   <span
                     className={`${accent.marker} flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl shadow-inner`}
                     aria-hidden="true"
                   >
-                    {world.icon}
+                    {place.world.icon}
                   </span>
                   <span className="min-w-0">
                     <span className="block font-display text-lg leading-snug font-bold">
-                      {world.name}
+                      {place.label}
                     </span>
                     <span
                       className={`mt-1.5 inline-block rounded-full px-2.5 py-0.5 text-xs font-bold ${

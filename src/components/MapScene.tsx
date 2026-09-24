@@ -1,17 +1,16 @@
 /**
- * Built-in illustrated map of BABES World — the fallback background shown
- * until the real scanned artwork exists at `public/images/babes-world-map.png`
- * (see `mapArtwork` in `src/data/worlds.ts`).
+ * Built-in illustrated map of BABES World — a stand-in background shown only
+ * if the real artwork at `public/images/babes-world-map.png` is missing
+ * (see `mapArtwork` in `src/data/mapButtons.ts`).
  *
- * It approximates the real hand-painted map: a round island world on a sky
+ * It loosely sketches the hand-painted map: a round island world on a sky
  * of clouds, with the snowy mountain and canyon up top, Peer Pressure Pier
  * on the left, Helping Harbor's lighthouse, the Feeling Forest ring around
  * the fountain in the middle, sunny fields on the right, and the
  * seven-colour rainbow sweeping down to the Drug Free Community goal.
  *
- * The viewBox matches `mapArtwork.width x mapArtwork.height`, so the hotspot
- * positions in `src/data/worlds.ts` line up the same way on this drawing and
- * on the real scan.
+ * The button positions in `src/data/mapButtons.ts` are tuned to the real
+ * artwork, so on this drawing they only land roughly in the right areas.
  *
  * It is marked aria-hidden because the clickable markers on top carry all of
  * the meaning for screen-reader users.
