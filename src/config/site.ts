@@ -71,6 +71,12 @@ export const site = {
       intro:
         "Every lesson is a short set of slides with big pictures, simple words, and a read-aloud button so early readers can follow along.",
     },
+    characters: {
+      id: "characters",
+      title: "Meet the BABES Characters",
+      intro:
+        "The friendly faces who bring every BABES World lesson to life — in classrooms, at events and all across the map.",
+    },
     community: {
       id: "community",
       navLabel: "Community",

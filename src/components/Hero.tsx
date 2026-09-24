@@ -55,15 +55,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Placeholder hero artwork — swap the file in `public/images/`. */}
-        <div className="mx-auto w-full max-w-sm md:max-w-none">
-          <img
-            src="/images/hero-placeholder.svg"
-            alt="Illustration of Buttons, Bows and their friends exploring a colorful map together"
-            width={640}
-            height={520}
-            className="w-full rounded-blob bg-white/70 shadow-xl ring-1 ring-navy/10"
-          />
+        {/* Hero artwork — the file lives in `public/images/`. It is shown
+            whole (never stretched or cropped) on a white card, and capped in
+            width so the small original stays crisp. */}
+        <div className="mx-auto w-full max-w-md md:max-w-lg">
+          <div className="rotate-1 rounded-blob bg-white p-4 shadow-xl ring-1 ring-navy/10 sm:p-6">
+            <img
+              src="/images/calling-all-babes.png"
+              alt="Calling All BABES Family Members"
+              width={390}
+              height={209}
+              className="h-auto w-full rounded-2xl object-contain"
+            />
+          </div>
         </div>
       </div>
 

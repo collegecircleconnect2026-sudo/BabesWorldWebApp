@@ -9,7 +9,8 @@ Not Just For Babies"*. Public site: [babesworld.org](https://babesworld.org).
 
 It contains:
 
-1. **Hero** — name, full program name, mission and an "Explore the Map" button
+1. **Hero** — name, full program name, mission, an "Explore the Map" button
+   and the "Calling All BABES Family Members" rainbow illustration
 2. **Interactive BABES World map** — the real hand-painted map
    (`public/images/babes-world-map.png`) with a round button on each clickable
    place: Feeling Forest, Coping Canyon, Peer Pressure Pier, Helping Harbor,
@@ -21,11 +22,13 @@ It contains:
    buttons under the map
 3. **Lesson viewer** — slide-by-slide lesson with Next/Back, a progress bar and a
    read-aloud button (browser speech, nothing sent to a server)
-4. **Building a BABES Community** — a rainbow graphic of the seven community
+4. **Meet the BABES Characters** — a slideshow of photos of the costumed
+   characters, with name captions, arrows, dots and gentle auto-advance
+5. **Building a BABES Community** — a rainbow graphic of the seven community
    tiers (Families → Schools → Social Agencies → Faith-Based Organizations →
    Media → Business → Government) supporting the licensing vision
-5. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
-6. **Footer** — program name, mission, taglines and section links
+6. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
+7. **Footer** — program name, mission, taglines and section links
 
 Only the **Feeling Forest** has a real lesson; every other place shows a
 friendly "coming in the full platform" pop-up.
@@ -85,7 +88,7 @@ submitting. (You'll add the same variable to Vercel in step 5 below.)
 
 ## 3. Change the words, colours and pictures
 
-Everything a non-developer needs is in five clearly-commented files.
+Everything a non-developer needs is in six clearly-commented files.
 
 | I want to change…                                        | Edit this file           |
 | -------------------------------------------------------- | ------------------------ |
@@ -94,6 +97,7 @@ Everything a non-developer needs is in five clearly-commented files.
 | Map picture, and where each button sits on it            | `src/data/mapButtons.ts` |
 | Map places' pop-up text, icons, which place has a lesson | `src/data/worlds.ts`     |
 | Lesson slides (titles, text, questions, images)          | `src/data/lessons.ts`    |
+| Character slideshow (photos, names, captions, order)     | `src/data/characters.ts` |
 
 In all of these, change the text **between the quote marks** and leave the
 quotes, commas and brackets alone.
@@ -123,14 +127,61 @@ in `sections.community` in the same file. The rainbow itself is drawn in code
 in `src/components/CommunitySection.tsx`; the arcs pick up the tiers and
 colours automatically, innermost (Families) to outermost (Government).
 
-### Swap the images
+### Change the hero picture
 
-Apart from the map (see "Swap the map image" below), all artwork is
+The hero picture is the "Calling All BABES Family Members" rainbow
+illustration at:
+
+```
+public/images/calling-all-babes.png
+```
+
+To use a different picture, drop it into `public/images/` and change the
+`src` (and the `alt` text, `width` and `height`) of the `<img>` in
+`src/components/Hero.tsx`. It is always shown whole on a white card, never
+stretched or cropped.
+
+### Edit the "Meet the BABES Characters" slideshow
+
+The character photos live in `public/images/` (currently
+`character-group.jpg` and `beaver-and-bird.jpg`). The slideshow list is in
+`src/data/characters.ts`, where each slide looks like:
+
+```ts
+{
+  src: "/images/character-group.jpg",   // the photo, starting with /images/
+  name: "The BABES Friends",            // big caption under the photo
+  caption: "The whole gang together…",  // optional smaller line
+  alt: "Six costumed BABES characters…",// description for screen readers
+  trim: { top: 6.4, bottom: 5.5 },      // optional: hide black bars (percent)
+},
+```
+
+- **Add a photo:** put the file in `public/images/`, then copy a whole
+  `{ … },` block and change its `src`, `name`, `caption` and `alt`.
+- **Reorder:** move whole blocks up or down — the slideshow follows the list.
+- **Remove:** delete the block (the file can stay in `public/images/`).
+- **Black bars:** some phone photos have black strips top and bottom. `trim`
+  hides that percentage of the photo's height from each edge on screen; the
+  file itself is untouched. Leave `trim` out for photos without bars.
+
+Photos of any shape are shown whole inside the same rounded frame, never
+stretched. A missing file shows a "Photo coming soon" placeholder instead of a
+broken image. The names in the file are descriptive stand-ins — swap in each
+character's real name.
+
+The slideshow moves on every 5 seconds (`SLIDE_INTERVAL_MS` in
+`src/components/CharacterSlideshow.tsx`), pauses while the mouse is over it
+or keyboard focus is inside it, and has a Pause button. For visitors whose
+device asks for reduced motion it never moves on its own.
+
+### Swap the other images
+
+Apart from the map, the hero and the character photos, the artwork is
 placeholder SVG in the `public/images/` folder:
 
 ```
 public/images/logo-placeholder.svg          ← header + footer logo
-public/images/hero-placeholder.svg          ← hero illustration
 public/images/worlds/*.svg                  ← picture at the top of each world pop-up
 public/images/lessons/feeling-forest/*.svg  ← one per lesson slide
 src/app/icon.svg                            ← browser tab icon
@@ -141,7 +192,6 @@ To use your own picture:
 1. Drop the file (`.png`, `.jpg` or `.svg`) into `public/images/…`.
 2. Point to it in the matching data file, using a path that starts with `/images/`:
    - logo → `logo.src` in `src/config/site.ts`
-   - hero → the `src` in `src/components/Hero.tsx`
    - a world → `image.src` in `src/data/worlds.ts`
    - a lesson slide → `image.src` in `src/data/lessons.ts`
 3. Update the `alt` text to describe the picture — screen readers read it aloud.
@@ -285,7 +335,7 @@ DNS instructions at your domain registrar.
 src/
   app/
     layout.tsx      fonts, page title, global wrapper
-    page.tsx        the single page: hero → map → lesson → community → signup → footer
+    page.tsx        the single page: hero → map → lesson → characters → community → signup → footer
     globals.css     base styles
     theme.css       ← BRAND COLOURS
     icon.svg        browser tab icon
@@ -296,6 +346,8 @@ src/
     MapScene.tsx    rough drawn stand-in, only if the map picture is missing
     Modal.tsx       accessible pop-up (Escape, focus trap, focus return)
     LessonViewer.tsx slides, progress, Next/Back, read-aloud
+    CharactersSection.tsx  "Meet the BABES Characters" section
+    CharacterSlideshow.tsx the photo slideshow (fade, arrows, dots, pause)
     CommunitySection.tsx  the "Building a BABES Community" rainbow
     ComingSoon.tsx  pop-up for worlds without a lesson
     EmailSignup.tsx Formspree form
@@ -306,6 +358,7 @@ src/
     mapButtons.ts   ← MAP PICTURE + BUTTON POSITIONS (x/y percentages)
     worlds.ts       ← MAP PLACES (pop-up text, icons, which has a lesson)
     lessons.ts      ← LESSON SLIDES
+    characters.ts   ← CHARACTER SLIDESHOW (photos, names, captions)
   hooks/
     useSpeech.ts    read-aloud helper
 public/images/      ← ALL PICTURES
@@ -325,6 +378,10 @@ public/images/      ← ALL PICTURES
   focus to the marker that opened it.
 - The lesson announces each slide change, supports left/right arrow keys, and
   its progress bar is exposed to screen readers.
+- The character slideshow is a labelled carousel: Tab reaches the arrows, dots
+  and Pause button, ←/→ change photos while focus is inside, each dot names
+  its character, and hidden slides are skipped by screen readers. It pauses
+  on hover and focus and doesn't auto-advance under reduced motion.
 - Buttons outside the map are at least 44×44 px (on phones the map's own
   buttons are smaller so they don't hide the artwork; the list under the map
   is the full-size alternative). Text is high-contrast, and animations are
