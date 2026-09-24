@@ -10,13 +10,15 @@ Not Just For Babies"*. Public site: [babesworld.org](https://babesworld.org).
 It contains:
 
 1. **Hero** — name, full program name, mission and an "Explore the Map" button
-2. **Interactive BABES World map** — the real illustrated map with clickable
-   hotspots over every named place (Feeling Forest, Peer Pressure Pier, Helping
-   Harbor, Party Park, Safe City, Prevention Place, Coping Canyon, Divergent
-   Paths, Prizes Galore, Teen Institute, Smoking Cessation Clinic, Self Help
-   Groups, BABES Alive, BABES Choir, Children's Adventure, Clinicians,
-   Educators, Community/Activists, and the "Building a Community" rainbow);
-   on phones the same places appear as an easy-to-tap card grid
+2. **Interactive BABES World map** — the real hand-painted map
+   (`public/images/babes-world-map.png`) with a round button on each clickable
+   place: Feeling Forest, Coping Canyon, Peer Pressure Pier, Helping Harbor,
+   Party Park, Safe City, Prevention Place, Decision Delta, Divergent Paths,
+   Prizes Galore, Teen Institute, Children's Adventure, Clinicians, Educators,
+   Community/Activists and the "Building a Community" rainbow. (BABES Choir,
+   Self Help Groups, BABES Alive and Smoking Cessation Clinic are painted
+   labels only, not buttons.) The same places are listed as big, easy-to-tap
+   buttons under the map
 3. **Lesson viewer** — slide-by-slide lesson with Next/Back, a progress bar and a
    read-aloud button (browser speech, nothing sent to a server)
 4. **Building a BABES Community** — a rainbow graphic of the seven community
@@ -83,14 +85,15 @@ submitting. (You'll add the same variable to Vercel in step 5 below.)
 
 ## 3. Change the words, colours and pictures
 
-Everything a non-developer needs is in four clearly-commented files.
+Everything a non-developer needs is in five clearly-commented files.
 
-| I want to change…                                   | Edit this file            |
-| --------------------------------------------------- | ------------------------- |
-| Site name, taglines, mission, community tiers, footer | `src/config/site.ts`    |
-| Brand colours (navy, crimson, sky, rainbow)          | `src/app/theme.css`       |
-| Map places, blurbs, hotspot positions, which place has a lesson | `src/data/worlds.ts` |
-| Lesson slides (titles, text, questions, images)      | `src/data/lessons.ts`     |
+| I want to change…                                        | Edit this file           |
+| -------------------------------------------------------- | ------------------------ |
+| Site name, taglines, mission, community tiers, footer    | `src/config/site.ts`     |
+| Brand colours (navy, crimson, sky, rainbow)              | `src/app/theme.css`      |
+| Map picture, and where each button sits on it            | `src/data/mapButtons.ts` |
+| Map places' pop-up text, icons, which place has a lesson | `src/data/worlds.ts`     |
+| Lesson slides (titles, text, questions, images)          | `src/data/lessons.ts`    |
 
 In all of these, change the text **between the quote marks** and leave the
 quotes, commas and brackets alone.
@@ -122,7 +125,8 @@ colours automatically, innermost (Families) to outermost (Government).
 
 ### Swap the images
 
-All artwork is placeholder SVG in the `public/images/` folder:
+Apart from the map (see "Swap the map image" below), all artwork is
+placeholder SVG in the `public/images/` folder:
 
 ```
 public/images/logo-placeholder.svg          ← header + footer logo
@@ -142,42 +146,70 @@ To use your own picture:
    - a lesson slide → `image.src` in `src/data/lessons.ts`
 3. Update the `alt` text to describe the picture — screen readers read it aloud.
 
-### Use the real BABES World map artwork
+### Swap the map image
 
-The map background works two ways, automatically:
+The map is the picture at:
 
-1. **With the real artwork (preferred).** Drop your scan of the hand-painted
-   map at exactly:
-
-   ```
-   public/images/babes-world-map.png
-   ```
-
-   Refresh the page (while running `npm run dev`; on Vercel, push/redeploy)
-   and the site uses it as the map background — no code change needed.
-   (A `.jpg` works too: also update `src` in the `mapArtwork`
-   block at the top of `src/data/worlds.ts`.) If your scan's proportions
-   differ a lot from ~855 × 925, update `width`/`height` in that same block
-   so the map keeps its shape while loading.
-
-2. **Without it.** Until that file exists, a built-in illustrated
-   approximation (drawn in `src/components/MapScene.tsx`) is shown, with the
-   same layout — sky border, mountain, forest ring, rainbow — so the hotspots
-   line up either way.
-
-### Adjust the hotspot positions
-
-Each place in `src/data/worlds.ts` has:
-
-```ts
-position: { x: 38.5, y: 67 },  // percent from the left, percent from the top
+```
+public/images/babes-world-map.png
 ```
 
-`x: 0` is the artwork's left edge, `x: 100` its right edge; `y: 0` the top,
-`y: 100` the bottom. The numbers already match the real map's layout; if your
-scan is cropped differently, open the site next to the file and nudge the
-numbers (1 = one percent of the map's width or height) until each marker sits
-on its painted label. Save, and the page refreshes with the new spot.
+To use a new version, replace that file with your new picture (same name),
+then:
+
+1. Open `src/data/mapButtons.ts` and, in the `mapArtwork` block at the top,
+   set `width` and `height` to the new picture's size in pixels (the current
+   one is `1060` × `921`). This keeps the map's shape while it loads.
+2. If your picture is a `.jpg` or has a different name, drop it in
+   `public/images/` and change `src` in that same block to match, e.g.
+   `"/images/babes-world-map-2027.jpg"`.
+3. Update `alt` in that block if the picture's content changed — screen
+   readers read it aloud.
+4. Check every button still sits on its place (next section). If the new
+   picture is the same artwork at a different resolution, nothing moves:
+   positions are percentages. If it is cropped or re-drawn, nudge them.
+
+The picture is always shown whole — never stretched or cropped — and scales
+to fit phones and desktops. (If the file were ever missing, a rough built-in
+drawing from `src/components/MapScene.tsx` is shown instead.)
+
+### Adjust the map button positions
+
+Every button is one line in `src/data/mapButtons.ts`:
+
+```ts
+{ id: "feeling-forest", label: "Feeling Forest", x: 42, y: 71.5 },
+```
+
+- `x` — percent from the picture's **left** edge (0) to its **right** edge (100)
+- `y` — percent from the picture's **top** edge (0) to its **bottom** edge (100)
+- The numbers mark the **centre** of the round button. Because they are
+  percentages of the picture, a button stays on its spot at every screen size.
+- `label` — the place's name: read out by screen readers, shown on hover, and
+  used in the list under the map.
+- `id` — which place in `src/data/worlds.ts` the button opens.
+
+**To nudge a button:** run `npm run dev`, open the map, and change `x`
+(left/right) or `y` (up/down) by 0.5–1 at a time. Save and the page refreshes.
+
+**To find a spot from scratch:** open the map picture in any viewer that shows
+pixel positions (Preview, Paint, Photoshop, GIMP…), point at the spot, and
+divide:
+
+```
+x = pixels from the left ÷ picture width  × 100
+y = pixels from the top  ÷ picture height × 100
+```
+
+For example, 445 px from the left and 650 px from the top of the
+1060 × 921 picture is `x: 42, y: 70.6`.
+
+**To add or remove a button:** add or delete its line in
+`src/data/mapButtons.ts`. A new place also needs an entry in
+`src/data/worlds.ts` (name, pop-up text, icon) with the same `id`;
+`npm run typecheck` flags an `id` that doesn't match. The order of the lines
+is the Tab / arrow-key order and the order of the list under the map, so keep
+Feeling Forest first.
 
 ### Edit the lesson
 
@@ -260,8 +292,8 @@ src/
   components/
     Header.tsx      sticky nav with smooth-scroll links
     Hero.tsx
-    WorldMap.tsx    the interactive map + hotspots + pop-up handling
-    MapScene.tsx    the drawn fallback map background
+    WorldMap.tsx    the interactive map + buttons + pop-up handling
+    MapScene.tsx    rough drawn stand-in, only if the map picture is missing
     Modal.tsx       accessible pop-up (Escape, focus trap, focus return)
     LessonViewer.tsx slides, progress, Next/Back, read-aloud
     CommunitySection.tsx  the "Building a BABES Community" rainbow
@@ -271,7 +303,8 @@ src/
   config/
     site.ts         ← ALL SITE TEXT (incl. taglines + community tiers)
   data/
-    worlds.ts       ← MAP PLACES + HOTSPOT POSITIONS
+    mapButtons.ts   ← MAP PICTURE + BUTTON POSITIONS (x/y percentages)
+    worlds.ts       ← MAP PLACES (pop-up text, icons, which has a lesson)
     lessons.ts      ← LESSON SLIDES
   hooks/
     useSpeech.ts    read-aloud helper
@@ -282,13 +315,19 @@ public/images/      ← ALL PICTURES
 
 - Semantic landmarks (`header`, `main`, `section`, `footer`) and a "Skip to
   content" link.
-- Map markers are real buttons: Tab reaches them, arrow keys move between them,
-  Enter opens them. Every marker announces the world's name, status and blurb.
+- Map buttons are real buttons: Tab reaches them, arrow keys move between them,
+  Enter opens them. Each announces the place's name and whether it opens the
+  sample lesson, shows its name on hover/focus, and gets a high-contrast focus
+  ring that stays visible over the artwork.
+- Every map place is also in the plain list of buttons under the map — the
+  easiest way in on small screens.
 - The pop-up traps focus, closes with Escape or a click outside, and returns
   focus to the marker that opened it.
 - The lesson announces each slide change, supports left/right arrow keys, and
   its progress bar is exposed to screen readers.
-- Tap targets are at least 44×44 px, text is high-contrast, and animations are
+- Buttons outside the map are at least 44×44 px (on phones the map's own
+  buttons are smaller so they don't hide the artwork; the list under the map
+  is the full-size alternative). Text is high-contrast, and animations are
   disabled for visitors who ask for reduced motion.
 - Please keep filling in `alt` text when you swap images in.
 
