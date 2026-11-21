@@ -6,7 +6,7 @@ export default function Hero() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden bg-linear-to-b from-sky-light via-cream-deep to-cream-deep px-4 pt-16 pb-20 sm:pt-24 sm:pb-28"
+      className="relative overflow-hidden bg-linear-to-b from-sky-light via-cream-deep to-cream-deep px-4 pt-14 pb-20 sm:pt-24 sm:pb-28"
     >
       {/* Decorative cloud-like blobs — hidden from screen readers. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -23,16 +23,16 @@ export default function Hero() {
 
           <h1
             id="hero-heading"
-            className="mt-5 font-display text-5xl leading-tight font-bold text-navy sm:text-7xl"
+            className="mt-6 font-display text-5xl leading-[1.02] font-bold tracking-tight text-navy sm:text-7xl"
           >
-            {site.name}
+            {site.wordmark}
           </h1>
 
-          <p className="mt-2 text-sm font-bold tracking-[0.14em] text-crimson uppercase sm:text-base">
+          <p className="mt-3 text-sm font-bold tracking-[0.14em] text-crimson uppercase sm:text-base">
             {site.fullName}
           </p>
 
-          <p className="mt-5 text-lg leading-relaxed text-ink sm:text-xl">
+          <p className="mt-6 text-lg leading-relaxed text-ink sm:text-xl">
             {site.tagline}
           </p>
           <p className="mt-3 text-base leading-relaxed text-ink-soft sm:text-lg">

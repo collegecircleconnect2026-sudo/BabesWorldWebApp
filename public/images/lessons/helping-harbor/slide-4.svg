@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img">
+  <rect width="800" height="600" fill="#d6ecf5"/>
+  <circle cx="480" cy="110" r="56" fill="#ffffff" opacity="0.55"/>
+  <path d="M0 430 Q200 332 400 420 T800 400 L800 600 L0 600 Z" fill="#8fc7de"/>
+  <path d="M0 500 Q220 400 440 500 T800 480 L800 600 L0 600 Z" fill="#4f9fc2" opacity="0.9"/>
+  <g fill="#2d6f94">
+    <rect x="130" y="250" width="110" height="150" rx="18"/>
+    <polygon points="600,200 680,400 520,400"/>
+  </g>
+  <circle cx="400" cy="320" r="78" fill="#ffd66b" stroke="#241e3a" stroke-width="6"/>
+  <circle cx="374" cy="304" r="8.7" fill="#241e3a"/>
+  <circle cx="426" cy="304" r="8.7" fill="#241e3a"/>
+  <path d="M352 350 Q400 396 448 350" stroke="#241e3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <text x="400" y="538" text-anchor="middle" font-family="Nunito, Verdana, sans-serif" font-size="40" font-weight="700" fill="#241e3a">Slide 4 · How to ask for help</text>
+  <text x="400" y="576" text-anchor="middle" font-family="Nunito, Verdana, sans-serif" font-size="22" fill="#514a6b">Placeholder illustration — swap me out</text>
+</svg>

@@ -11,8 +11,11 @@
  */
 
 export const site = {
-  /** The program's name, shown in the header, hero and footer. */
+  /** The program's name, used in the browser tab and body copy. */
   name: "BABES World",
+
+  /** The one-word wordmark shown at the top of the site (header + hero). */
+  wordmark: "BabesWorld",
 
   /** What the acronym stands for — shown under the name in the hero and footer. */
   fullName: "Beginning Awareness Basic Education Studies",
@@ -62,14 +65,21 @@ export const site = {
       navLabel: "The Map",
       title: "Explore the BABES World map",
       intro:
-        "Every place on the map is a stop on the journey — from Coping Canyon to the rainbow that builds a drug-free community. The Feeling Forest is open to explore today; every other stop opens in the complete platform.",
+        "Every place on the map is a stop on the journey — from Coping Canyon to the rainbow that builds a drug-free community. The Feeling Forest, Helping Harbor and Decision Delta are open to explore today, each with a lesson and quiz; every other stop opens in the complete platform.",
     },
     lesson: {
       id: "lesson",
       navLabel: "Sample lesson",
       title: "Inside a BABES World lesson",
       intro:
-        "Every lesson is a short set of slides with big pictures, simple words, and a read-aloud button so early readers can follow along.",
+        "Every lesson is a short set of slides with big pictures, simple words and a read-aloud button so early readers can follow along — then a quick quiz to check what stuck.",
+    },
+    progress: {
+      id: "progress",
+      navLabel: "Progress",
+      title: "Platform progress",
+      intro:
+        "BabesWorld is being built in the open. Here is what you can try today and what is coming next in the full family and classroom platform.",
     },
     characters: {
       id: "characters",
@@ -139,6 +149,51 @@ export const site = {
       name: "Government",
       blurb: "Policy and public health sustaining the program community-wide.",
       accent: "violet",
+    },
+  ],
+
+  /**
+   * The "Platform progress" board. `status` is one of:
+   *   "live"      working in this demo
+   *   "preview"   a clickable mock-up of a planned screen
+   *   "planned"   on the roadmap
+   * `href` is optional — a link to try it.
+   */
+  progress: [
+    {
+      name: "Interactive world map",
+      detail: "Hand-painted map with 16 clickable stops, keyboard and screen-reader friendly.",
+      status: "live",
+      href: "/#worlds",
+    },
+    {
+      name: "Lesson player + quizzes",
+      detail: "Slides, read-aloud and a check-in quiz. 3 sample lessons live.",
+      status: "live",
+      href: "/#lesson",
+    },
+    {
+      name: "Meet the characters",
+      detail: "Photo slideshow of Buttons, Bows and friends.",
+      status: "live",
+      href: "/#characters",
+    },
+    {
+      name: "Member access (family login)",
+      detail: "Families unlock lessons with an access key from their school or program.",
+      status: "preview",
+      href: "/access",
+    },
+    {
+      name: "Staff lesson studio",
+      detail: "Where BABES staff create, edit and publish lessons and quizzes.",
+      status: "preview",
+      href: "/admin",
+    },
+    {
+      name: "Full lesson library",
+      detail: "Every stop on the map, preschool through 12th grade, with progress tracking.",
+      status: "planned",
     },
   ],
 

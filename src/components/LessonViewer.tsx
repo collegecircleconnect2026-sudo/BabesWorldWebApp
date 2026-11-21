@@ -18,14 +18,21 @@ function slideSpeech(lesson: Lesson, index: number) {
   return [slide.title, slide.body, slide.prompt].filter(Boolean).join(". ");
 }
 
+type Phase = "slides" | "quiz" | "done";
+
 /**
  * Slide-based lesson player: picture + text per slide, Next / Back buttons,
  * a progress indicator, and a read-aloud button powered by the browser's
- * built-in speech synthesis.
+ * built-in speech synthesis. After the last slide comes a short quiz, then a
+ * "Great job!" screen with the score.
  */
 export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
   const [index, setIndex] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const [phase, setPhase] = useState<Phase>("slides");
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [picked, setPicked] = useState<number | null>(null);
+  const [score, setScore] = useState(0);
+  const finished = phase !== "slides";
   const { supported: speechSupported, speaking, toggle, stop } = useSpeech();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const isFirstRender = useRef(true);
@@ -43,31 +50,51 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
       return;
     }
     headingRef.current?.focus();
-  }, [index, finished, stop]);
+  }, [index, phase, quizIndex, stop]);
+
+  const hasQuiz = lesson.quiz.length > 0;
+  const question = lesson.quiz[quizIndex];
+  const isLastQuestion = quizIndex === lesson.quiz.length - 1;
 
   function goNext() {
     if (isLast) {
-      setFinished(true);
+      setQuizIndex(0);
+      setPicked(null);
+      setScore(0);
+      setPhase(hasQuiz ? "quiz" : "done");
     } else {
       setIndex((current) => Math.min(current + 1, total - 1));
     }
   }
 
   function goBack() {
-    if (finished) {
-      setFinished(false);
-      return;
-    }
+    if (finished) return;
     setIndex((current) => Math.max(current - 1, 0));
   }
 
   function restart() {
-    setFinished(false);
+    setPhase("slides");
     setIndex(0);
+  }
+
+  function pick(choice: number) {
+    if (picked !== null || !question) return;
+    setPicked(choice);
+    if (choice === question.answer) setScore((current) => current + 1);
+  }
+
+  function nextQuestion() {
+    if (isLastQuestion) {
+      setPhase("done");
+    } else {
+      setQuizIndex((current) => current + 1);
+      setPicked(null);
+    }
   }
 
   /** Left / right arrow keys move between slides. */
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (finished) return;
     if (event.key === "ArrowRight") {
       event.preventDefault();
       goNext();
@@ -105,9 +132,101 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
         )}
       </div>
 
-      {finished ? (
+      {phase === "quiz" && question ? (
+        /* ---- Quiz ------------------------------------------------------- */
+        <div className="animate-fade-up px-5 py-6 sm:px-7 sm:py-8">
+          <p className="text-xs font-bold tracking-[0.14em] text-crimson uppercase">
+            Quick check · Question {quizIndex + 1} of {lesson.quiz.length}
+          </p>
+          <h3
+            ref={headingRef}
+            tabIndex={-1}
+            className="mt-2 font-display text-2xl leading-tight font-bold text-balance outline-none sm:text-3xl"
+          >
+            {question.question}
+          </h3>
+
+          <ul className="mt-6 grid list-none gap-3" aria-label="Answer choices">
+            {question.choices.map((choice, i) => {
+              const isAnswer = i === question.answer;
+              const isPicked = i === picked;
+              const revealed = picked !== null;
+              let tone =
+                "border-ink/10 bg-white hover:border-navy/40 hover:bg-sky-light";
+              if (revealed && isAnswer) tone = "border-mint bg-mint/10";
+              else if (revealed && isPicked) tone = "border-crimson bg-crimson/10";
+              else if (revealed) tone = "border-ink/10 bg-white opacity-60";
+
+              return (
+                <li key={choice}>
+                  <button
+                    type="button"
+                    onClick={() => pick(i)}
+                    aria-disabled={revealed}
+                    className={`flex min-h-14 w-full items-center gap-3 rounded-2xl border-2 px-5 py-3 text-left text-lg font-bold text-ink transition duration-200 ${tone} ${
+                      revealed ? "cursor-default" : "cursor-pointer"
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cream-deep text-sm"
+                    >
+                      {revealed && isAnswer
+                        ? "✓"
+                        : revealed && isPicked
+                          ? "✕"
+                          : String.fromCharCode(65 + i)}
+                    </span>
+                    {choice}
+                    {revealed && isAnswer && (
+                      <span className="sr-only"> (correct answer)</span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div aria-live="polite">
+            {picked !== null && (
+              <p
+                className={`animate-fade-up mt-5 rounded-2xl px-4 py-3 text-lg font-semibold ${
+                  picked === question.answer ? "bg-mint/10" : "bg-gold/15"
+                }`}
+              >
+                <span className="mr-2" aria-hidden="true">
+                  {picked === question.answer ? "🌟" : "💡"}
+                </span>
+                {picked === question.answer ? "That's right! " : "Good try! "}
+                {question.explain}
+              </p>
+            )}
+          </div>
+
+          <div className="mt-6 flex gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setPhase("slides");
+                setIndex(total - 1);
+              }}
+              className="min-h-14 flex-1 rounded-full border-2 border-ink/15 px-6 py-3 text-lg font-bold text-ink transition hover:bg-cream"
+            >
+              ← Lesson
+            </button>
+            <button
+              type="button"
+              onClick={nextQuestion}
+              disabled={picked === null}
+              className="min-h-14 flex-1 rounded-full bg-crimson px-6 py-3 text-lg font-bold text-white transition hover:bg-crimson-deep disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {isLastQuestion ? "See results" : "Next →"}
+            </button>
+          </div>
+        </div>
+      ) : phase === "done" ? (
         /* ---- Finished state --------------------------------------------- */
-        <div className="px-5 py-10 text-center sm:px-7">
+        <div className="animate-fade-up px-5 py-10 text-center sm:px-7">
           <p className="text-6xl" aria-hidden="true">
             🎉
           </p>
@@ -118,10 +237,15 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
           >
             Great job!
           </h3>
-          <p className="mx-auto mt-2 max-w-md text-ink-soft">
-            You finished {lesson.title}. Feelings are easier to carry when we
-            name them out loud.
+          <p className="mx-auto mt-2 max-w-md text-lg text-ink-soft">
+            You finished {lesson.title}. {lesson.wrapUp}
           </p>
+          {hasQuiz && (
+            <p className="mx-auto mt-5 inline-flex items-center gap-2 rounded-full bg-mint/10 px-5 py-2 text-base font-bold text-mint">
+              <span aria-hidden="true">⭐</span>
+              Quiz score: {score} of {lesson.quiz.length}
+            </p>
+          )}
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <button
               type="button"
@@ -144,7 +268,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
       ) : (
         <>
           {/* ---- Slide ---------------------------------------------------- */}
-          <div className="px-5 py-5 sm:px-7 sm:py-6">
+          <div key={index} className="animate-fade-up px-5 py-5 sm:px-7 sm:py-6">
             <img
               src={slide.image.src}
               alt={slide.image.alt}
@@ -222,7 +346,7 @@ export default function LessonViewer({ lesson, onClose }: LessonViewerProps) {
                 onClick={goNext}
                 className="min-h-14 flex-1 rounded-full bg-crimson px-6 py-3 text-lg font-bold text-white transition hover:bg-crimson-deep"
               >
-                {isLast ? "Finish" : "Next →"}
+                {isLast ? (hasQuiz ? "Take the quiz →" : "Finish") : "Next →"}
               </button>
             </div>
 

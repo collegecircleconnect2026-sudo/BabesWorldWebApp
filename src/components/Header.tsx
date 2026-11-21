@@ -1,10 +1,15 @@
 import { site } from "@/config/site";
 
-/** Sticky top bar with the logo and smooth-scrolling section links. */
+/**
+ * Sticky top bar with the wordmark, smooth-scrolling section links and the
+ * Member access button. Links start with "/" so they also work from the
+ * /access and /admin pages.
+ */
 export default function Header() {
   const links = [
     site.sections.worlds,
     site.sections.lesson,
+    site.sections.progress,
     site.sections.community,
     site.sections.signup,
   ];
@@ -32,29 +37,42 @@ export default function Header() {
         </p>
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-navy/10 bg-cream/90 shadow-sm backdrop-blur">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-1.5 px-4 py-3 sm:flex-row sm:justify-between sm:gap-4">
+      <header className="sticky top-0 z-40 border-b border-navy/10 bg-cream/85 shadow-[0_1px_0_rgb(30_47_92/0.04),0_8px_24px_-16px_rgb(30_47_92/0.25)] backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2.5 sm:py-3 lg:flex-nowrap">
           <a
-            href="#top"
-            className="flex items-center gap-2.5 font-display text-lg font-bold whitespace-nowrap text-navy sm:text-xl"
+            href="/#top"
+            aria-label={`${site.wordmark} home`}
+            className="flex items-center gap-2.5 rounded-full font-display text-xl font-bold tracking-tight whitespace-nowrap text-navy sm:text-2xl"
           >
             <img
               src={site.logo.src}
-              alt={site.logo.alt}
+              alt=""
               width={40}
               height={40}
-              className="h-10 w-10 rounded-full"
+              className="h-9 w-9 rounded-full sm:h-10 sm:w-10"
             />
-            <span>{site.name}</span>
+            <span>{site.wordmark}</span>
           </a>
 
-          <nav aria-label="Main">
-            <ul className="flex list-none flex-wrap items-center justify-center gap-1 sm:gap-2">
+          <a
+            href="/access"
+            className="inline-flex min-h-10 items-center gap-1.5 rounded-full bg-navy px-4 py-2 text-sm font-bold whitespace-nowrap text-white shadow-sm transition duration-200 hover:-translate-y-px hover:bg-navy-deep hover:shadow-md lg:order-last"
+          >
+            <span aria-hidden="true">🔑</span>
+            Member access
+          </a>
+
+          <nav aria-label="Main" className="-mx-2 w-[calc(100%+1rem)] lg:mx-0 lg:w-auto">
+            <ul className="flex list-none items-center justify-between gap-0.5 overflow-x-auto px-1 sm:justify-center sm:gap-1 lg:justify-end">
               {links.map((section) => (
-                <li key={section.id}>
+                <li
+                  key={section.id}
+                  // "Stay in touch" lives in the footer on phones, so the nav fits one row.
+                  className={`shrink-0 ${section.id === site.sections.signup.id ? "hidden sm:block" : ""}`}
+                >
                   <a
-                    href={`#${section.id}`}
-                    className="inline-block rounded-full px-2.5 py-2 text-sm font-bold whitespace-nowrap text-ink-soft transition hover:bg-navy/5 hover:text-navy sm:px-4 sm:text-base"
+                    href={`/#${section.id}`}
+                    className="inline-block rounded-full px-2.5 py-2 text-sm font-bold whitespace-nowrap text-ink-soft transition duration-200 hover:bg-navy/5 hover:text-navy sm:px-3.5"
                   >
                     {section.navLabel}
                   </a>

@@ -62,7 +62,7 @@ export default function EmailSignup() {
     <section
       id={copy.id}
       aria-labelledby="signup-heading"
-      className="bg-cream px-4 py-16 sm:py-24"
+      className="bg-cream px-4 py-20 sm:py-28"
     >
       <div className="mx-auto max-w-xl rounded-blob bg-white p-6 shadow-xl ring-1 ring-navy/10 sm:p-10">
         {status === "success" ? (

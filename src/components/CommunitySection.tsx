@@ -1,3 +1,4 @@
+import SectionHeading from "@/components/SectionHeading";
 import { site } from "@/config/site";
 
 /**
@@ -38,18 +39,16 @@ export default function CommunitySection() {
     <section
       id={copy.id}
       aria-labelledby="community-heading"
-      className="bg-navy-deep px-4 py-16 text-white sm:py-24"
+      className="bg-navy-deep px-4 py-20 text-white sm:py-28"
     >
       <div className="mx-auto max-w-6xl">
-        <h2
+        <SectionHeading
           id="community-heading"
-          className="text-center font-display text-3xl font-bold sm:text-4xl"
-        >
-          {copy.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-relaxed text-white/80">
-          {copy.intro}
-        </p>
+          eyebrow="Licensing vision"
+          title={copy.title}
+          intro={copy.intro}
+          invert
+        />
 
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* ---- The rainbow ---------------------------------------------- */}
