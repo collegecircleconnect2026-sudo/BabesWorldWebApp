@@ -13,7 +13,8 @@
  *   image       OPTIONAL. A picture shown at the top of the pop-up
  *               (see `public/images/worlds/`). Leave it out and the pop-up
  *               shows a colourful banner with the emoji instead.
- *   lessonId    "feeling-forest" -> opens the real sample lesson.
+ *   lessonId    a lesson id from `src/data/lessons.ts` (e.g. "feeling-forest")
+ *               -> opens that sample lesson + quiz.
  *               null            -> shows the friendly "coming soon" pop-up.
  *   accent      the icon colour in the list under the map — pick one of the
  *               names listed in `accentClasses` at the bottom of this file.
@@ -57,7 +58,7 @@ export const worlds = [
       src: "/images/worlds/feeling-forest.svg",
       alt: "Illustration of a friendly forest with tall rounded trees",
     },
-    lessonId: "feeling-forest", // <- the one place with a real lesson
+    lessonId: "feeling-forest", // <- the featured "Start here" lesson
     accent: "forest",
   },
 
@@ -68,7 +69,7 @@ export const worlds = [
     blurb:
       "Where the river splits into many channels — kids learn to slow down, weigh their choices and pick the one that's right for them.",
     icon: "🧭",
-    lessonId: null,
+    lessonId: "decision-delta",
     accent: "sky",
   },
   {
@@ -95,7 +96,11 @@ export const worlds = [
     blurb:
       "A lighthouse port full of kind helpers — and the trusted grown-ups kids can always go to for help.",
     icon: "⛵",
-    lessonId: null,
+    image: {
+      src: "/images/worlds/helping-harbor.svg",
+      alt: "Illustration of a lighthouse harbor",
+    },
+    lessonId: "helping-harbor",
     accent: "harbor",
   },
   {

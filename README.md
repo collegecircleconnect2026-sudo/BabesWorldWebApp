@@ -20,18 +20,31 @@ It contains:
    Self Help Groups, BABES Alive and Smoking Cessation Clinic are painted
    labels only, not buttons.) The same places are listed as big, easy-to-tap
    buttons under the map
-3. **Lesson viewer** — slide-by-slide lesson with Next/Back, a progress bar and a
-   read-aloud button (browser speech, nothing sent to a server)
+3. **Lesson viewer** — slide-by-slide lessons with Next/Back, a progress bar, a
+   read-aloud button (browser speech, nothing sent to a server) and a short
+   quiz at the end. Three sample lessons: Feeling Forest, Helping Harbor and
+   Decision Delta, switchable with tabs and also opened from the map
 4. **Meet the BABES Characters** — a slideshow of photos of the costumed
    characters, with name captions, arrows, dots and gentle auto-advance
 5. **Building a BABES Community** — a rainbow graphic of the seven community
    tiers (Families → Schools → Social Agencies → Faith-Based Organizations →
    Media → Business → Government) supporting the licensing vision
 6. **Email signup** — name + email, posted straight to [Formspree](https://formspree.io)
-7. **Footer** — program name, mission, taglines and section links
+7. **Platform progress** — what is live, in preview and planned (edit the
+   `progress` list in `src/config/site.ts`)
+8. **Footer** — program name, mission, taglines and section links
 
-Only the **Feeling Forest** has a real lesson; every other place shows a
-friendly "coming in the full platform" pop-up.
+Extra pages:
+
+- **`/access` — Member access** (preview): access-key entry for families. It
+  is a mock-up: nothing is sent anywhere, and the demo key `BABES-DEMO-2026`
+  shows a sample family dashboard.
+- **`/admin` — Lesson studio** (static preview): where staff will add and
+  edit lessons and quizzes. Nothing on it saves.
+
+**Feeling Forest**, **Helping Harbor** and **Decision Delta** have sample
+lessons (placeholder art); every other place shows a friendly "coming in the
+full platform" pop-up.
 
 **Tech:** Next.js (App Router) · TypeScript · Tailwind CSS v4. No database, no
 accounts, no payments — the whole site is static and free to host on Vercel.

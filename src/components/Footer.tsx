@@ -6,6 +6,7 @@ export default function Footer() {
   const links = [
     site.sections.worlds,
     site.sections.lesson,
+    site.sections.progress,
     site.sections.community,
     site.sections.signup,
   ];
@@ -26,7 +27,7 @@ export default function Footer() {
                 className="h-14 w-14 rounded-full bg-white/90 p-1"
               />
               <div>
-                <p className="font-display text-2xl font-bold">{site.name}</p>
+                <p className="font-display text-2xl font-bold tracking-tight">{site.wordmark}</p>
                 <p className="text-sm font-semibold tracking-wide text-white/70">
                   {site.fullName}
                 </p>
@@ -51,13 +52,26 @@ export default function Footer() {
               {links.map((section) => (
                 <li key={section.id}>
                   <a
-                    href={`#${section.id}`}
+                    href={`/#${section.id}`}
                     className="inline-block rounded text-white/80 transition hover:text-white hover:underline"
                   >
                     {section.navLabel}
                   </a>
                 </li>
               ))}
+            </ul>
+            <p className="mt-6 font-display text-lg font-bold">Platform</p>
+            <ul className="mt-3 list-none space-y-2">
+              <li>
+                <a href="/access" className="inline-block rounded text-white/80 transition hover:text-white hover:underline">
+                  Member access
+                </a>
+              </li>
+              <li>
+                <a href="/admin" className="inline-block rounded text-white/80 transition hover:text-white hover:underline">
+                  Staff lesson studio (preview)
+                </a>
+              </li>
             </ul>
             <p className="mt-6 font-display text-lg font-bold">Visit us</p>
             <p className="mt-2 text-white/80">{site.url}</p>

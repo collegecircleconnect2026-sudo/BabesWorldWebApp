@@ -1,4 +1,5 @@
 import CharacterSlideshow from "@/components/CharacterSlideshow";
+import SectionHeading from "@/components/SectionHeading";
 import { site } from "@/config/site";
 import { characters } from "@/data/characters";
 
@@ -15,18 +16,15 @@ export default function CharactersSection() {
     <section
       id={copy.id}
       aria-labelledby="characters-heading"
-      className="bg-linear-to-b from-cream via-sky-light to-cream px-4 py-16 sm:py-24"
+      className="bg-linear-to-b from-cream via-sky-light to-cream px-4 py-20 sm:py-28"
     >
       <div className="mx-auto max-w-3xl">
-        <h2
+        <SectionHeading
           id="characters-heading"
-          className="text-center font-display text-3xl font-bold text-navy sm:text-4xl"
-        >
-          {copy.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-relaxed text-ink-soft">
-          {copy.intro}
-        </p>
+          eyebrow="Buttons, Bows & friends"
+          title={copy.title}
+          intro={copy.intro}
+        />
 
         <div className="mt-10">
           <CharacterSlideshow characters={characters} />

@@ -6,6 +6,7 @@ import ComingSoon from "@/components/ComingSoon";
 import LessonViewer from "@/components/LessonViewer";
 import MapScene from "@/components/MapScene";
 import Modal from "@/components/Modal";
+import SectionHeading from "@/components/SectionHeading";
 import { site } from "@/config/site";
 import { getLesson } from "@/data/lessons";
 import { mapArtwork, mapButtons } from "@/data/mapButtons";
@@ -37,6 +38,12 @@ const places = mapButtons.flatMap((button) => {
   const world = getWorld(button.id);
   return world ? [{ ...button, world }] : [];
 });
+
+/** How many places on the map open a real lesson. */
+const liveCount = places.filter((place) => place.world.lessonId).length;
+
+/** The featured "Start here" place: the first one with a lesson. */
+const startId = places.find((place) => place.world.lessonId)?.id;
 
 /**
  * The map is as wide as the page allows, but never so tall that it can't be
@@ -100,18 +107,15 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
     <section
       id={site.sections.worlds.id}
       aria-labelledby="worlds-heading"
-      className="bg-linear-to-b from-sky-light via-cream to-cream px-4 py-16 sm:py-24"
+      className="bg-linear-to-b from-sky-light via-cream to-cream px-4 py-20 sm:py-28"
     >
       <div className="mx-auto max-w-6xl">
-        <h2
+        <SectionHeading
           id="worlds-heading"
-          className="text-center font-display text-3xl font-bold text-navy sm:text-4xl"
-        >
-          {site.sections.worlds.title}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-relaxed text-ink-soft">
-          {site.sections.worlds.intro}
-        </p>
+          eyebrow={`${liveCount} of ${places.length} stops open in this demo`}
+          title={site.sections.worlds.title}
+          intro={site.sections.worlds.intro}
+        />
 
         {/* ---- The map ---------------------------------------------------- */}
         <div
@@ -143,6 +147,7 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
           >
             {places.map((place, i) => {
               const hasLesson = Boolean(place.world.lessonId);
+              const isStart = place.id === startId;
 
               return (
                 <li
@@ -164,7 +169,7 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
                     }`}
                   >
                     {/* A soft pulse draws the eye to the live lesson. */}
-                    {hasLesson && (
+                    {isStart && (
                       <span
                         aria-hidden="true"
                         className="absolute inset-0 animate-ping rounded-full bg-gold/70 [animation-duration:2.4s] motion-reduce:hidden"
@@ -174,8 +179,8 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
                       {place.world.icon}
                     </span>
 
-                    {/* Always-on "Start here" tag for the sample lesson. */}
-                    {hasLesson && (
+                    {/* Always-on "Start here" tag for the featured lesson. */}
+                    {isStart && (
                       <span
                         aria-hidden="true"
                         className="absolute top-1/2 right-full mr-[0.55em] -translate-y-1/2 rounded-full bg-navy px-[0.8em] py-[0.4em] text-[clamp(0.625rem,1.45cqw,0.9375rem)] font-bold whitespace-nowrap text-white shadow-md ring-2 ring-white"
@@ -209,7 +214,7 @@ export default function WorldMap({ hasMapArtwork }: WorldMapProps) {
         </p>
 
         {/* ---- Same places as a list of big buttons (easy to tap) -------- */}
-        <h3 className="mt-14 text-center font-display text-xl font-bold text-navy sm:text-2xl">
+        <h3 className="mt-16 text-center font-display text-2xl font-bold tracking-tight text-navy">
           Every stop in BABES World
         </h3>
         <ul className="mt-6 grid list-none grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">

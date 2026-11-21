@@ -15,7 +15,7 @@ html {
   /* Smooth-scroll navigation, with room for the sticky header
      (which is tallest on phones, where the nav wraps under the logo). */
   scroll-behavior: smooth;
-  scroll-padding-top: 7.5rem;
+  scroll-padding-top: 8rem;
 }
 
 @media (min-width: 640px) {
@@ -59,3 +59,30 @@ body {
   border-radius: 0.5rem;
 }
 
+
+/* Balanced headings and tidy paragraph endings read as finished typography. */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Gentle entrance used by slides, quiz steps and new screens. */
+@theme {
+  --animate-fade-up: fade-up 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

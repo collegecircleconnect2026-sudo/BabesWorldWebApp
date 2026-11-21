@@ -8,12 +8,13 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import LessonSection from "@/components/LessonSection";
+import ProgressSection from "@/components/ProgressSection";
 import WorldMap from "@/components/WorldMap";
 import { mapArtwork } from "@/data/mapButtons";
 
 /**
  * The whole site is one page with smooth-scrolling sections:
- * hero → world map → sample lesson → meet the characters → BABES community → email signup → footer.
+ * hero → world map → sample lessons → meet the characters → platform progress → BABES community → email signup → footer.
  */
 export default function HomePage() {
   // Checked at build time: the map shows the real artwork from `public/`;
@@ -29,6 +30,7 @@ export default function HomePage() {
         <WorldMap hasMapArtwork={hasMapArtwork} />
         <LessonSection />
         <CharactersSection />
+        <ProgressSection />
         <CommunitySection />
         <EmailSignup />
       </main>
